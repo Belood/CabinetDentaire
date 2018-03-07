@@ -29,5 +29,6 @@
             <s:textfield label="NumAssurance"  name="numAssurance"/>
             <s:submit cssClass="button-register" value="Ajouter" />
         </s:form>
+        <a href="fetchAll"><button class="button-report" type="button">Report</button></a>
     </body>
 </html>

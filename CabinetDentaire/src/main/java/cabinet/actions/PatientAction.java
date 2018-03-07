@@ -8,7 +8,9 @@ package cabinet.actions;
 import cabinet.javabeans.Patient;
 import cabinet.models.PatientDAO;
 import com.opensymphony.xwork2.ActionSupport;
+import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
@@ -26,6 +28,16 @@ public class PatientAction extends ActionSupport{
     private int age;
     private int numSS;
     private int numAssurance;
+    private ArrayList<Patient> patientList=null;
+    private PatientDAO patientDAO=new PatientDAO();
+
+    public ArrayList<Patient> getPatientList() {
+        return patientList;
+    }
+
+    public void setPatientList(ArrayList<Patient> patientList) {
+        this.patientList = patientList;
+    }
             
     @Override
     public String execute() {
@@ -38,6 +50,36 @@ public class PatientAction extends ActionSupport{
             e.printStackTrace();
         }
         return SUCCESS;
+    }
+    public String fetch(){
+        try{
+            patientList=new ArrayList<Patient>();
+            ResultSet rs=patientDAO.findAll();
+            if(rs!=null){
+                while(rs.next()){
+                    Patient patient=new Patient();
+                    patient.setPatientID(rs.getInt("PatientID"));
+                    patient.setSalleAttenteID(rs.getInt("SalleAttenteID"));
+                    patient.setPersonnelID(rs.getInt("PersonnelID"));
+                    patient.setNom(rs.getString("Nom"));
+                    patient.setPrenom(rs.getString("Prenom"));
+                    patient.setAddresse(rs.getString("addresse"));
+                    patient.setDateNaissance(LocalDate.parse(rs.getString("DateNaissance")));
+                    patient.setNumTel(rs.getInt("NumTel"));
+                    patient.setEmail(rs.getString("Email"));
+                    patient.setProfession(rs.getString("Profession"));
+                    patient.setSexe(rs.getString("Sexe"));
+                    patient.setNumSS(rs.getInt("NumSS"));
+                    patient.setNumAssurance(rs.getInt("NumAssurance"));
+                    patientList.add(patient);
+                }
+            }else
+                return ERROR;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return "fetch";
     }
         public String getNom() {
         return nom;
