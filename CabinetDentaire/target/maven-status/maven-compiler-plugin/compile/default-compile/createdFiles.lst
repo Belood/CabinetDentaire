@@ -1,3 +1,5 @@
+cabinet\models\CommonDAO.class
+cabinet\actions\EmployeAction.class
 cabinet\models\PatientDAO.class
 cabinet\models\EmployeDAO.class
 cabinet\javabeans\Patient.class
@@ -5,5 +7,3 @@ cabinet\models\ConnectionBDMySQL.class
 cabinet\actions\PatientAction.class
 cabinet\javabeans\Employe.class
 cabinet\models\SQLConstant.class
-cabinet\models\CommonDAO.class
-cabinet\actions\EmployeAction.class

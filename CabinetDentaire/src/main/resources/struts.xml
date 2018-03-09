@@ -9,12 +9,18 @@
             <result name="success">/jsp/successEmploye.jsp</result>
             <result name="input">/jsp/AddEmploye.jsp</result>
         </action>
-         <action name="AddPatient" class="cabinet.actions.PatientAction" method="execute">
+        <action name="AddPatient" class="cabinet.actions.PatientAction" method="execute">
             <result name="success">/jsp/success.jsp</result>
             <result name="input">/jsp/AddPatient.jsp</result>
         </action>
         <action name="fetchAll" class="cabinet.actions.PatientAction" method="fetch">
             <result name="fetch">/jsp/tablePatient.jsp</result>
         </action>
+        <action name="login" class="cabinet.actions.LoginAction" method="execute">
+            <result name="success">/jsp/AddEmploye.jsp</result>
+            <result name="input">/jsp/login.jsp</result>
+            <result name="failure">/</result>
+        </action>   
+        
     </package>
 </struts>
