@@ -17,7 +17,7 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Mystyle.css">
         <link href="https://fonts.googleapis.com/css?family=Coiny" rel="stylesheet">
 
-        <title>JSP Page</title>
+        <title>Login Page</title>
     </head>
     <body>
 

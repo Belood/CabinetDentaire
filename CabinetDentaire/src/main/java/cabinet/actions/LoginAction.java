@@ -39,7 +39,9 @@ public class LoginAction {
            return "success";
        }
        return "failure";
-       
+    }
+    public String logout(){
+        return "success";
     }
     
     

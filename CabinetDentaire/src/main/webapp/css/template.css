@@ -7,7 +7,11 @@ and open the template in the editor.
     Created on : 9 mars 2018, 18:39:50
     Author     : Alexandre
 */
-
+body{background: #eee url(http://subtlepatterns.com/patterns/sativa.png);}
+html,body{
+    position: relative;
+    height: 100%;
+}
 .navbar {
     margin-bottom: 0;
     border-radius: 0;
@@ -40,4 +44,9 @@ footer {
         padding: 15px;
     }
     .row.content {height:auto;} 
+}
+
+.crudBtn{
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

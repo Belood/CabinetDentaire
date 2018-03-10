@@ -13,14 +13,21 @@
             <result name="success">/jsp/success.jsp</result>
             <result name="input">/jsp/AddPatient.jsp</result>
         </action>
+        <action name="AddPatientForm" class="cabinet.actions.PatientAction" method="addPatientForm">
+            <result name="success">/jsp/AddPatient.jsp</result>
+            <result name="input">/jsp/AddPatient.jsp</result>
+        </action>
+        
         <action name="fetchAll" class="cabinet.actions.PatientAction" method="fetch">
             <result name="fetch">/jsp/tablePatient.jsp</result>
         </action>
         <action name="login" class="cabinet.actions.LoginAction" method="execute">
-            <result name="success">/jsp/AddEmploye.jsp</result>
+            <result name="success">/jsp/template.jsp</result>
             <result name="input">/jsp/login.jsp</result>
             <result name="failure">/</result>
-        </action>   
-        
+        </action> 
+        <action name="logout" class="cabinet.actions.LoginAction" method="logout">
+            <result name="success">/jsp/login.jsp</result>     
+        </action> 
     </package>
 </struts>

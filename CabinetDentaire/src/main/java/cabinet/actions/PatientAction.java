@@ -38,7 +38,9 @@ public class PatientAction extends ActionSupport{
     public void setPatientList(ArrayList<Patient> patientList) {
         this.patientList = patientList;
     }
-            
+    public String addPatientForm(){
+        return SUCCESS;
+    }
     @Override
     public String execute() {
         Patient patient=new Patient(nom,prenom, addresse, dateNaissance, numTel, email, profession, sexe, age, numSS, numAssurance);
