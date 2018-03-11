@@ -81,12 +81,12 @@
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                 <input type="hidden" name="patientId" id="patientId">
-                                <input type="text" name="nom" id="nom" class="form-control input-sm" placeholder="Nom">
+                                <input type="text" name="cabinetID" id="cabinetID" class="form-control input-sm" placeholder="CabinetID">
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="text" name="prenom" id="prenom" class="form-control input-sm" placeholder="Prenom">
+                                <input type="text" name="nom" id="nom" class="form-control input-sm" placeholder="Nom">
                             </div>
                         </div>
                     </div>

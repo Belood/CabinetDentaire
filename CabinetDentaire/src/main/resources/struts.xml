@@ -5,9 +5,23 @@
     <constant name = "struts.devMode" value = "true" />
     <package name="CabinetDentaire" extends="json-default">
         <!-- Add your actions here -->
+        
+        <action name="GestionEmploye" class="cabinet.actions.EmployeAction" method="tableEmploye">
+            <result name="findAll">/jsp/gestionEmploye.jsp</result>
+            <result name="input">/jsp/acceuil.jsp</result>
+        </action>
+       
         <action name="AddEmploye" class="cabinet.actions.EmployeAction" method="execute">
-            <result name="success">/jsp/successEmploye.jsp</result>
+            <result name="success">/jsp/acceuil.jsp</result>
             <result name="input">/jsp/AddEmploye.jsp</result>
+        </action> 
+        <action name="updateEmploye" class="cabinet.actions.EmployeAction" method="updateEmploye">
+            <result name="update" type="json"></result>
+            <result name="input">/jsp/acceuil.jsp</result>
+        </action>
+        <action name="deleteEmploye" class="cabinet.actions.EmployeAction" method="deleteEmploye">
+            <result name="delete" type="json"></result>
+            <result name="input">/jsp/acceuil.jsp</result>
         </action>
         <action name="GestionPatient" class="cabinet.actions.PatientAction" method="tablePatient">
             <result name="findAll">/jsp/gestionPatient.jsp</result>

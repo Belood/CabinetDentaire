@@ -29,10 +29,32 @@ public class Employe implements Serializable {
     private int niveauDroits;
     private String discriminator;
 
+    @Override
+    public String toString() {
+        return "Employe{" + "personnelID=" + personnelID + ", cabinetID=" + cabinetID + ", nom=" + nom + ", prenom=" + prenom + ", addresse=" + addresse + ", dateNaissance=" + dateNaissance + ", numTel=" + numTel + ", email=" + email + ", age=" + age + ", salaire=" + salaire + ", dateEmbauche=" + dateEmbauche + ", login=" + login + ", password=" + password + ", niveauDroits=" + niveauDroits + ", discriminator=" + discriminator + '}';
+    }
+
     public Employe(){}
     
     public Employe(String nom, String prenom, String addresse, LocalDate dateNaissance, int numTel,String email, int age, float salaire, LocalDate dateEmbauche,String login, String password, int niveauDroits, String discriminator) {
         
+        this.nom = nom;
+        this.prenom = prenom;
+        this.addresse = addresse;
+        this.dateNaissance = dateNaissance;
+        this.age = age;
+        this.numTel = numTel;
+        this.email = email;
+        this.salaire = salaire;
+        this.login = login;
+        this.password = password;
+        this.niveauDroits = niveauDroits;
+        this.dateEmbauche = dateEmbauche;
+        this.discriminator = discriminator;
+    }
+    public Employe(int personnelID,String nom, String prenom, String addresse, LocalDate dateNaissance, int numTel,String email, int age, float salaire, LocalDate dateEmbauche,String login, String password, int niveauDroits, String discriminator) {
+        
+        this.personnelID = personnelID;
         this.nom = nom;
         this.prenom = prenom;
         this.addresse = addresse;

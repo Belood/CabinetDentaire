@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -98,6 +99,8 @@ public class EmployeDAO extends CommonDAO {
      
         try{  
            PreparedStatement statement=connection.conn.prepareStatement(SQLConstant.UPDATE_EMPLOYE);
+            //System.out.println(employe.toString()); 
+                  
            statement.setString(1, employe.getNom());
             statement.setString(2, employe.getPrenom());
             statement.setString(3, employe.getAddresse());
@@ -111,10 +114,11 @@ public class EmployeDAO extends CommonDAO {
             statement.setString(11, employe.getPassword());
             statement.setInt(12, employe.getNiveauDroits());           
             statement.setString(13, employe.getDiscriminator());
-            statement.setInt(14, employe.getPersonnelID());       
-           
-           statement.executeUpdate();
-           statement.close();
+                
+            statement.setInt(14, employe.getPersonnelID()); 
+            
+            statement.executeUpdate();
+            statement.close();
            
         }
         catch(SQLException e){
@@ -124,10 +128,10 @@ public class EmployeDAO extends CommonDAO {
     }
 
  
-    public boolean delete(Employe employe) {
+    public boolean delete(int id) {
         try{  
            PreparedStatement statement=connection.conn.prepareStatement(SQLConstant.DELETE_EMPLOYE);
-           statement.setInt(1, employe.getPersonnelID());
+           statement.setInt(1, id);
            
            statement.executeUpdate();
            statement.close();
@@ -225,47 +229,26 @@ public class EmployeDAO extends CommonDAO {
         return employes;
     }
 
-    public List<Employe> findAll() {
-        List<Employe> employes = new LinkedList<Employe>();
+    @Override
+    public ResultSet findAll() {
+        ResultSet rs = null;
         try {
-            PreparedStatement statement=connection.conn.prepareStatement(SQLConstant.FindAll_EMPLOYE);
-            ResultSet resultSet = statement.executeQuery();
- 
- 
-            while (resultSet.next()) {
-                Employe employe = new Employe();
- 
-                employe.setNom(resultSet.getString("Nom"));
-                employe.setPrenom(resultSet.getString("Prenom"));
-                employe.setAddresse(resultSet.getString("Addresse"));
-                employe.setDateNaissance(resultSet.getString("DateNaissance"));
-                employe.setAge(resultSet.getInt("Age"));
-                employe.setNumTel(resultSet.getInt("NumTel"));
-                employe.setEmail(resultSet.getString("email"));
-                employe.setSalaire(resultSet.getString("salaire"));
-                employe.setLogin(resultSet.getString("login"));
-                employe.setPassword(resultSet.getString("password"));
-                employe.setNiveauDroits(resultSet.getInt("niveauDroits"));
-                employe.setDateEmbauche(resultSet.getString("DateEmbauche"));
-                employe.setDiscriminator(resultSet.getString("discriminator"));
-                employe.setPersonnelID(resultSet.getInt("personnelID"));
-                //System.out.println("personnelID : "+resultSet.getInt("personnelID"));
-                //employe.setCabinetID(resultSet.getInt("CabinetID"));
-                employes.add(employe);
-            }
- 
-            resultSet.close();
-            statement.close();
- 
- 
-        } catch (SQLException e) {
-            //e.printStackTrace();
-            throw new RuntimeException(e);
+            PreparedStatement ps = connection.conn.prepareStatement(SQLConstant.FindAll_EMPLOYE);
+            rs = ps.executeQuery();
+            return rs;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
- 
-        return employes;
- 
     }
+       
+ 
+ 
+            
+            
+ 
+ 
+       
 
     @Override
     public Object create(Object o) {

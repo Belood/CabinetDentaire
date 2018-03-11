@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="#">Acceuil</a></li>
-                <li><a href="#">Employés(Admin only)</a></li>
+                <li><a href="GestionEmploye">Employés(Admin only)</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Patient
                         <span class="caret"></span></a>

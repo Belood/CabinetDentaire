@@ -8,7 +8,9 @@ package cabinet.actions;
 import cabinet.javabeans.Employe;
 import cabinet.models.EmployeDAO;
 import com.opensymphony.xwork2.ActionSupport;
+import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,45 +33,75 @@ public class EmployeAction extends ActionSupport {
     private String password;
     private int niveauDroits;
     private String discriminator;
-
-     @Override
-    public String execute() {
-        Employe employe=new Employe(nom,prenom,addresse,dateNaissance,numTel,email,age,salaire,dateEmbauche,login,password,niveauDroits,discriminator);
-        Employe employeTest=new Employe("TEST1","b","c",LocalDate.now(),3,"a",5,75,LocalDate.now(),"f","ge",2,"test");
-       Employe employeTest2=new Employe("TEST2","b","c",LocalDate.now(),3,"a",5,75,LocalDate.now(),"f","ge",2,"test");
-        EmployeDAO p = new EmployeDAO();
+    private ArrayList<Employe> employeList=null;
+    private EmployeDAO employeDAO=new EmployeDAO();
+    private String status;
+    
+    @Override
+    public String execute(){
+        Employe employe=new Employe(getNom(), getPrenom(), getAddresse(), getDateNaissance(), getNumTel(), getEmail(), getAge(), getSalaire(), getDateEmbauche(), getLogin(), getPassword(), getNiveauDroits(), getDiscriminator());
+        EmployeDAO employeDAO= new EmployeDAO();
         try{
-           p.create(employe);
-            p.create(employeTest);
-            p.create(employeTest2);
-           List<Employe> list = p.findAll();
-            System.out.println("employes cree");
-            //Employe read = p.read(list.get(0));
-            Employe read = list.get(0);
-            System.out.println("READ -> nom : "+ read.getNom()+" prenom : " +read.getPrenom());
-            read = p.findById(61);
-            System.out.println("FindByID -> nom : "+ read.getNom()+" prenom : " +read.getPrenom());
-            list = p.findByName("Test");
-            System.out.println("FindByName -> nom : "+ list.get(1).getNom()+" prenom : " +list.get(1).getPrenom());
-       
-       
-            
-            /*String name =list.get(0).getNom();
-            list.get(0).setNom("Modif");
-            System.out.println(name +  " modifié en "+ list.get(0).getNom());
-             p.update(list.get(0));
-             
-             System.out.println("employe Update");
-             
-              System.out.println("employe supprimer "+list.get(1).getNom());
-             p.delete(list.get(1));*/
-            
+            employeDAO.create(employe);
         }
         catch(Exception e){
             e.printStackTrace();
         }
         return SUCCESS;
     }
+    public String tableEmploye(){
+        try{
+            employeList=new ArrayList<Employe>();
+            ResultSet resultSet= employeDAO.findAll();
+            if(resultSet!=null){
+            while (resultSet.next()) {
+                Employe employe = new Employe();
+ 
+                employe.setNom(resultSet.getString("Nom"));
+                employe.setPrenom(resultSet.getString("Prenom"));
+                employe.setAddresse(resultSet.getString("Addresse"));
+                employe.setDateNaissance(resultSet.getString("DateNaissance"));
+                employe.setAge(resultSet.getInt("Age"));
+                employe.setNumTel(resultSet.getInt("NumTel"));
+                employe.setEmail(resultSet.getString("email"));
+                employe.setSalaire(resultSet.getString("salaire"));
+                employe.setLogin(resultSet.getString("login"));
+                employe.setPassword(resultSet.getString("password"));
+                employe.setNiveauDroits(resultSet.getInt("niveauDroits"));
+                employe.setDateEmbauche(resultSet.getString("DateEmbauche"));
+                employe.setDiscriminator(resultSet.getString("discriminator"));
+                employe.setPersonnelID(resultSet.getInt("personnelID"));
+                //System.out.println("personnelID : "+resultSet.getInt("personnelID"));
+                //employe.setCabinetID(resultSet.getInt("CabinetID"));
+                employeList.add(employe);
+            }
+            }
+            else{
+                return ERROR;
+            }
+ 
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return "findAll";
+    }
+     public String deleteEmploye() {
+        if (employeDAO.delete(personnelID)) {
+            setStatus("Delete Successful");
+        }
+
+        return "delete";
+    }
+
+    public String updateEmploye() {
+       if( employeDAO.update(new Employe( getPersonnelID(),getNom(), getPrenom(), getAddresse(), getDateNaissance(), getNumTel(), getEmail(), getAge(), getSalaire(), getDateEmbauche(), getLogin(), getPassword(), getNiveauDroits(), getDiscriminator())));
+       {
+            setStatus("Update Successful");
+       }
+       return "update";
+    }
+   
        
     /**
      * @return the personnelID
@@ -152,7 +184,7 @@ public class EmployeAction extends ActionSupport {
      * @param dateNaissance the dateNaissance to set
      */
     public void setDateNaissance(String dateNaissance) {
-        this.dateNaissance =LocalDate.parse(dateNaissance);
+        this.dateNaissance = LocalDate.parse(dateNaissance);
        
     }
 
@@ -209,7 +241,7 @@ public class EmployeAction extends ActionSupport {
      * @param salaire the salaire to set
      */
     public void setSalaire(String salaire) {
-        this.salaire = Float.parseFloat(salaire);
+        this.setSalaire(Float.parseFloat(salaire));
     }
 
     /**
@@ -223,7 +255,7 @@ public class EmployeAction extends ActionSupport {
      * @param dateEmbauche the dateEmbauche to set
      */
     public void setDateEmbauche(String dateEmbauche) {
-        this.dateEmbauche = LocalDate.parse(dateEmbauche);
+        this.dateEmbauche =LocalDate.parse(dateEmbauche);
     }
 
     /**
@@ -281,4 +313,58 @@ public class EmployeAction extends ActionSupport {
     public void setDiscriminator(String discriminator) {
         this.discriminator = discriminator;
     }
+
+
+    /**
+     * @param salaire the salaire to set
+     */
+    public void setSalaire(float salaire) {
+        this.salaire = salaire;
+    }
+
+ 
+
+    /**
+     * @return the employeList
+     */
+    public ArrayList<Employe> getEmployeList() {
+        return employeList;
+    }
+
+    /**
+     * @param employeList the employeList to set
+     */
+    public void setEmployeList(ArrayList<Employe> employeList) {
+        this.employeList = employeList;
+    }
+
+    /**
+     * @return the employeDAO
+     */
+    public EmployeDAO getEmployeDAO() {
+        return employeDAO;
+    }
+
+    /**
+     * @param employeDAO the employeDAO to set
+     */
+    public void setEmployeDAO(EmployeDAO employeDAO) {
+        this.employeDAO = employeDAO;
+    }
+
+    /**
+     * @return the status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+   
 }
