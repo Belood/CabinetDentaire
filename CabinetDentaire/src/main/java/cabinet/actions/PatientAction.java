@@ -17,6 +17,7 @@ import java.util.ArrayList;
  * @author Alexandre
  */
 public class PatientAction extends ActionSupport {
+
     private int patientId;
     private String nom;
     private String prenom;
@@ -31,6 +32,7 @@ public class PatientAction extends ActionSupport {
     private int numAssurance;
     private ArrayList<Patient> patientList = null;
     private PatientDAO patientDAO = new PatientDAO();
+    private String status;
 
     public String addPatientForm() {
         return SUCCESS;
@@ -47,19 +49,23 @@ public class PatientAction extends ActionSupport {
         }
         return SUCCESS;
     }
-    public String deletePatient(){
-        patientDAO.delete(patientId);
+
+    public String deletePatient() {
+        if (patientDAO.delete(patientId)) {
+            status = "Delete Successful";
+        };
+
         return "delete";
     }
-    public String updatePatient(){
-        try{
-            
-        }
-           catch(Exception e){
-               e.printStackTrace();
-           }
-         return "update";       
+
+    public String updatePatient() {
+       if( patientDAO.update(new Patient(patientId,nom,prenom,addresse, dateNaissance, numTel, email, profession, sexe, age, numSS, numAssurance)))
+       {
+           status="Update Successful";
+       }
+       return "update";
     }
+
     public String tablePatient() {
         try {
             patientList = new ArrayList<Patient>();
@@ -186,11 +192,20 @@ public class PatientAction extends ActionSupport {
     public void setPatientList(ArrayList<Patient> patientList) {
         this.patientList = patientList;
     }
-        public int getPatientId() {
+
+    public int getPatientId() {
         return patientId;
     }
 
     public void setPatientId(int patientId) {
         this.patientId = patientId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

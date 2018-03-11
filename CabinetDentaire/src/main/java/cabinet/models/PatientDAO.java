@@ -79,6 +79,7 @@ public class PatientDAO extends CommonDAO {
 
     public boolean update(Patient patient) {
         try {
+            System.out.println(patient.toString());
             PreparedStatement statement = connection.conn.prepareStatement(SQLConstant.UPDATE_PATIENT);
             statement.setString(1, patient.getNom());
             statement.setString(2, patient.getPrenom());
@@ -90,6 +91,8 @@ public class PatientDAO extends CommonDAO {
             statement.setInt(8, patient.getAge());
             statement.setInt(9, patient.getNumSS());
             statement.setInt(10, patient.getNumAssurance());
+            statement.setInt(11,patient.getPatientID());
+            statement.execute();
             statement.close();
             return true;
         } catch (Exception e) {

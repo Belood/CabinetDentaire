@@ -22,7 +22,7 @@
     </head>
     <body>
         <jsp:include page="/jsp/header.jsp"/>
-        <div class="container-fluid" style="margin-top:15px">
+        <div class="container-fluid" id="mainContent">
             <jsp:include page="/jsp/${param.content}.jsp"/>   
         </div>
 

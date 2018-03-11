@@ -3,20 +3,29 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
     <constant name = "struts.devMode" value = "true" />
-    <package name="CabinetDentaire" extends="struts-default">
+    <package name="CabinetDentaire" extends="json-default">
         <!-- Add your actions here -->
         <action name="AddEmploye" class="cabinet.actions.EmployeAction" method="execute">
             <result name="success">/jsp/successEmploye.jsp</result>
             <result name="input">/jsp/AddEmploye.jsp</result>
         </action>
-        <action name="AddPatient" class="cabinet.actions.PatientAction" method="execute">
-            <result name="success">/jsp/success.jsp</result>
-            <result name="input">/jsp/AddPatient.jsp</result>
-        </action>
         <action name="GestionPatient" class="cabinet.actions.PatientAction" method="tablePatient">
             <result name="findAll">/jsp/gestionPatient.jsp</result>
             <result name="input">/jsp/acceuil.jsp</result>
         </action>
+        <action name="AddPatient" class="cabinet.actions.PatientAction" method="execute">
+            <result name="success">/jsp/success.jsp</result>
+            <result name="input">/jsp/AddPatient.jsp</result>
+        </action>
+        <action name="updatePatient" class="cabinet.actions.PatientAction" method="updatePatient">
+            <result name="update" type="json"></result>
+            <result name="input">/jsp/acceuil.jsp</result>
+        </action>
+        <action name="deletePatient" class="cabinet.actions.PatientAction" method="deletePatient">
+            <result name="delete" type="json"></result>
+            <result name="input">/jsp/acceuil.jsp</result>
+        </action>
+        
         <action name="login" class="cabinet.actions.LoginAction" method="execute">
             <result name="success">/jsp/template.jsp</result>
             <result name="input">/jsp/login.jsp</result>

@@ -22,6 +22,11 @@ public class Patient implements Serializable {
     private String addresse;
     private LocalDate dateNaissance;
     private int numTel;
+
+    @Override
+    public String toString() {
+        return "Patient{" + "patientID=" + patientID + ", salleAttenteID=" + salleAttenteID + ", personnelID=" + personnelID + ", nom=" + nom + ", prenom=" + prenom + ", addresse=" + addresse + ", dateNaissance=" + dateNaissance + ", numTel=" + numTel + ", email=" + email + ", profession=" + profession + ", sexe=" + sexe + ", age=" + age + ", numSS=" + numSS + ", numAssurance=" + numAssurance + '}';
+    }
     private String email;
     private String profession;
     private String sexe;
@@ -29,7 +34,22 @@ public class Patient implements Serializable {
     private int numSS;
     private int numAssurance;
 
-    public Patient(String nom, String prenom, String addresse,LocalDate dateNaissance, int numTel, String email, String profression, String sexe, int age, int numSS, int numAssurance) {
+    public Patient(String nom, String prenom, String addresse, LocalDate dateNaissance, int numTel, String email, String profression, String sexe, int age, int numSS, int numAssurance) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.addresse = addresse;
+        this.dateNaissance = dateNaissance;
+        this.numTel = numTel;
+        this.email = email;
+        this.profession = profression;
+        this.sexe = sexe;
+        this.age = age;
+        this.numSS = numSS;
+        this.numAssurance = numAssurance;
+    }
+
+    public Patient(int patientId, String nom, String prenom, String addresse, LocalDate dateNaissance, int numTel, String email, String profression, String sexe, int age, int numSS, int numAssurance) {
+        this.patientID = patientId;
         this.nom = nom;
         this.prenom = prenom;
         this.addresse = addresse;
@@ -50,8 +70,6 @@ public class Patient implements Serializable {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
-
- 
 
     public int getPatientID() {
         return patientID;
