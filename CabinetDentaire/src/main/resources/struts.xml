@@ -13,13 +13,9 @@
             <result name="success">/jsp/success.jsp</result>
             <result name="input">/jsp/AddPatient.jsp</result>
         </action>
-        <action name="AddPatientForm" class="cabinet.actions.PatientAction" method="addPatientForm">
-            <result name="success">/jsp/AddPatient.jsp</result>
-            <result name="input">/jsp/AddPatient.jsp</result>
-        </action>
-        
-        <action name="fetchAll" class="cabinet.actions.PatientAction" method="fetch">
-            <result name="fetch">/jsp/tablePatient.jsp</result>
+        <action name="GestionPatient" class="cabinet.actions.PatientAction" method="tablePatient">
+            <result name="findAll">/jsp/gestionPatient.jsp</result>
+            <result name="input">/jsp/acceuil.jsp</result>
         </action>
         <action name="login" class="cabinet.actions.LoginAction" method="execute">
             <result name="success">/jsp/template.jsp</result>

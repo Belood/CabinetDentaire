@@ -3,7 +3,7 @@
     Created on : 9 mars 2018, 19:31:36
     Author     : Alexandre
 --%>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -21,7 +21,7 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Patient
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="AddPatientForm">CRUD patient</a></li>
+                        <li><a href="GestionPatient">Gestion des patients</a></li>
                         <li><a href="#">Dossiers</a></li>
                         <li><a href="#">Rendez-vous</a></li>
                         <li><a href="#">Visites</a></li>
@@ -35,3 +35,4 @@
         </div>
     </div>
 </nav>
+<script src="${pageContext.request.contextPath}/js/headerJs.js"></script>

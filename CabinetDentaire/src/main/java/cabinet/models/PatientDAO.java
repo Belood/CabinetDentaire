@@ -67,6 +67,7 @@ public class PatientDAO extends CommonDAO {
             patient.setNumAssurance(resultSet.getInt("NumAssurance"));
             resultSet.close();
             statement.close();
+            connection.conn.close();
 
         } catch (SQLException e) {
             //e.printStackTrace();
@@ -97,10 +98,10 @@ public class PatientDAO extends CommonDAO {
         }
     }
 
-    public boolean delete(Patient patient) {
+    public boolean delete(int id) {
         try {
             PreparedStatement statement = connection.conn.prepareStatement(SQLConstant.DELETE_PATIENT);
-            statement.setInt(1, patient.getPersonnelID());
+            statement.setInt(1, id);
 
             statement.executeUpdate();
             statement.close();

@@ -16,7 +16,8 @@ import java.util.ArrayList;
  *
  * @author Alexandre
  */
-public class PatientAction extends ActionSupport{
+public class PatientAction extends ActionSupport {
+    private int patientId;
     private String nom;
     private String prenom;
     private String addresse;
@@ -28,38 +29,44 @@ public class PatientAction extends ActionSupport{
     private int age;
     private int numSS;
     private int numAssurance;
-    private ArrayList<Patient> patientList=null;
-    private PatientDAO patientDAO=new PatientDAO();
+    private ArrayList<Patient> patientList = null;
+    private PatientDAO patientDAO = new PatientDAO();
 
-    public ArrayList<Patient> getPatientList() {
-        return patientList;
-    }
-
-    public void setPatientList(ArrayList<Patient> patientList) {
-        this.patientList = patientList;
-    }
-    public String addPatientForm(){
+    public String addPatientForm() {
         return SUCCESS;
     }
+
     @Override
     public String execute() {
-        Patient patient=new Patient(nom,prenom, addresse, dateNaissance, numTel, email, profession, sexe, age, numSS, numAssurance);
-        PatientDAO p=new PatientDAO();
-        try{
+        Patient patient = new Patient(nom, prenom, addresse, dateNaissance, numTel, email, profession, sexe, age, numSS, numAssurance);
+        PatientDAO p = new PatientDAO();
+        try {
             p.create(patient);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return SUCCESS;
     }
-    public String fetch(){
+    public String deletePatient(){
+        patientDAO.delete(patientId);
+        return "delete";
+    }
+    public String updatePatient(){
         try{
-            patientList=new ArrayList<Patient>();
-            ResultSet rs=patientDAO.findAll();
-            if(rs!=null){
-                while(rs.next()){
-                    Patient patient=new Patient();
+            
+        }
+           catch(Exception e){
+               e.printStackTrace();
+           }
+         return "update";       
+    }
+    public String tablePatient() {
+        try {
+            patientList = new ArrayList<Patient>();
+            ResultSet rs = patientDAO.findAll();
+            if (rs != null) {
+                while (rs.next()) {
+                    Patient patient = new Patient();
                     patient.setPatientID(rs.getInt("PatientID"));
                     patient.setSalleAttenteID(rs.getInt("SalleAttenteID"));
                     patient.setPersonnelID(rs.getInt("PersonnelID"));
@@ -75,15 +82,16 @@ public class PatientAction extends ActionSupport{
                     patient.setNumAssurance(rs.getInt("NumAssurance"));
                     patientList.add(patient);
                 }
-            }else
+            } else {
                 return ERROR;
-        }
-        catch(Exception e){
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return "fetch";
+        return "findAll";
     }
-        public String getNom() {
+
+    public String getNom() {
         return nom;
     }
 
@@ -169,5 +177,20 @@ public class PatientAction extends ActionSupport{
 
     public void setNumAssurance(int numAssurance) {
         this.numAssurance = numAssurance;
+    }
+
+    public ArrayList<Patient> getPatientList() {
+        return patientList;
+    }
+
+    public void setPatientList(ArrayList<Patient> patientList) {
+        this.patientList = patientList;
+    }
+        public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
     }
 }

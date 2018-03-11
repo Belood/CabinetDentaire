@@ -12,31 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <table>
-            <thead>
-                <tr style="background-color: #E0E0E1;">
-                    <th>Patient ID</th>
-                    <th>Salle Attente ID</th>
-                    <th>Personnel ID</th>
-                    <th>Nom</th>
-                    <th>Prenom</th>
-                    <th>Addresse</th>
-                    <th>Date Naissance</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <s:iterator value="patientList">
-                <tr>
-                    <td><s:property value="patientID" /></td>
-                    <td><s:property value="salleAttenteID" /></td>
-                    <td><s:property value="personnelID" /></td>
-                    <td><s:property value="nom" /></td>
-                    <td><s:property value="prenom" /></td>
-                    <td><s:property value="addresse" /></td>
-                    <td><s:property value="dateNaissance" /></td>
-                    <td><s:property value="email" /></td>
-                </tr>
-            </s:iterator>
-        </table>
+        
     </body>
 </html>

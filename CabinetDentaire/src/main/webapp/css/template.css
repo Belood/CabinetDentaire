@@ -50,3 +50,20 @@ footer {
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
+
+.table{
+    border: 1px solid #2E2E2E;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+    border: 1px solid #2E2E2E;
+}
+th{
+    color:white;
+    background-color:#2E2E2E;
+}
