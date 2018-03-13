@@ -26,5 +26,11 @@ public class SQLConstant {
     protected static final String READ_EMPLOYE = "SELECT * from personnel where PersonnelID=?";
     protected static final String FindByID_EMPLOYE = "SELECT * from personnel where PersonnelID=?";
     protected static final String FindByName_EMPLOYE = "SELECT * from personnel where Nom=?";
+    protected static final String INSERT_RDV = "INSERT INTO rdv(" + "PatientID,RdvNum,RdvDate,Heure,Motif) VALUES (?,?,?,?,?)";
+    protected static final String READ_RDV = "SELECT * FROM rdv";
+    protected static final String UPDATE_RDV = "UPDATE rdv SET RdvDate=?,Heure=?,Motif=? WHERE RdvID=? ";
+    protected static final String DELETE_RDV = "DELETE FROM rdv WHERE RdvID=?";
+    protected static final String FINDAll_RDV = "SELECT * FROM rdv";
+    protected static final String LOGIN_CMD = "SELECT * FROM allusers WHERE username=? AND password=?";
 
 }

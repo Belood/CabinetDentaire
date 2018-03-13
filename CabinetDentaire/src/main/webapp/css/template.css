@@ -17,6 +17,7 @@ html,body{
     border-radius: 0;
 }
 
+
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {height: 100%}
 
@@ -31,7 +32,7 @@ html,body{
 footer {
     background-color: #555;
     color: white;
-    position: relative;
+    position: fixed;
     bottom: 0;
     left:0;
     width:100%;
@@ -70,4 +71,10 @@ th{
 }
 #mainContent{
     margin:15px;
+}
+
+#sessiondesign
+{
+    font-size: 12px;
+    background-color: red;
 }

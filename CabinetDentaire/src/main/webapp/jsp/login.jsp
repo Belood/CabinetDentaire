@@ -27,7 +27,7 @@
                 <div class="avatar">saguenay Teeth</div>
                 <div class="form-box">
                     <s:form action="login" theme="simple">
-                        <s:textfield label="loginId" key="userId" theme="simple" placeholder="username" />
+                        <s:textfield label="username" key="username" theme="simple" placeholder="username" />
                         <s:password label="Password" key="password" theme="simple" placeholder="password" />
                         <s:submit class="btn btn-info btn-block login" theme="simple" />
 

@@ -3,6 +3,9 @@
     Created on : 9 mars 2018, 19:31:36
     Author     : Alexandre
 --%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>    
 <nav class="navbar navbar-inverse fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -16,21 +19,23 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="#">Acceuil</a></li>
-                <li><a href="GestionEmploye">Employés(Admin only)</a></li>
+                <li><a href="GestionEmploye">EmployÃ©s(Admin only)</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Patient
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="GestionPatient">Gestion des patients</a></li>
                         <li><a href="#">Dossiers</a></li>
-                        <li><a href="#">Rendez-vous</a></li>
+                        <li><a href="GestionRDV">Rendez-vous</a></li>
                         <li><a href="#">Visites</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Contact</a></li>                
+            </ul>            
+            <ul class="nav navbar-nav navbar-right">                                                                
+                <li><h3><font color="red"><s:property value="#session.username" /></font></h3></li>
                 <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span>Se deconnecter</a></li>
+                
             </ul>
         </div>
     </div>
