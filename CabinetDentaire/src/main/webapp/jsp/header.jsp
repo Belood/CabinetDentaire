@@ -33,7 +33,7 @@
                 <li><a href="#">Contact</a></li>                
             </ul>            
             <ul class="nav navbar-nav navbar-right">                                                                
-                <li><h3><font color="red"><s:property value="#session.username" /></font></h3></li>
+                <li><h2><font color="red"><s:property value="#session.username" /></font></h2></li>
                 <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span>Se deconnecter</a></li>
                 
             </ul>
