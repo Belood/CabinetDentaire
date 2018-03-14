@@ -40,7 +40,7 @@
             <result name="input">/jsp/acceuil.jsp</result>
         </action>
         <action name="showConsultation" class="cabinet.actions.ConsultationAction" method="showConsultation">
-            <result name="success" type="json">/jsp/consultations.jsp</result>
+            <result name="success">/jsp/consultations.jsp</result>
             <result name="input">/jsp/acceuil.jsp</result>
         </action>
         <action name="createConsultation" class="cabinet.actions.ConsultationAction" method="execute">
