@@ -63,6 +63,7 @@
                 <td>
                     <button onclick="fetchRow(this)" class="btn btn btn-info" data-toggle="modal" data-target="#updateModal">Update</button>
                     <button onclick="deletePatient(this)" class="btn btn btn-danger">Delete</button>
+                    <a  href="showConsultation" ><button onclick="showConsultation(this)" class="btn btn btn-info">Visites</button></a>
                 </td>
             </tr>
         </s:iterator>

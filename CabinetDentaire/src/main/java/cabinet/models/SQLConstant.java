@@ -32,5 +32,7 @@ public class SQLConstant {
     protected static final String DELETE_RDV = "DELETE FROM rdv WHERE RdvID=?";
     protected static final String FINDAll_RDV = "SELECT * FROM rdv";
     protected static final String LOGIN_CMD = "SELECT * FROM allusers WHERE username=? AND password=?";
-
+    protected static final String INSERT_consult = "INSERT INTO consultation(" + "DossierID,consultationNum,typeConsultation,dateConsultation,observations) VALUES (?,?,?,?,?)";
+    protected static final String SELECT_DossierID = "SELECT DossierID from dossier WHERE PatientID=?"; 
+    protected static final String FindAll_consult="SELECT * FROM consultation where DossierID=?";
 }

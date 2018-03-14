@@ -27,7 +27,7 @@
                         <li><a href="GestionPatient">Gestion des patients</a></li>
                         <li><a href="#">Dossiers</a></li>
                         <li><a href="GestionRDV">Rendez-vous</a></li>
-                        <li><a href="#">Visites</a></li>
+                        <li><a href="showConsultation">Visites</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Contact</a></li>                
