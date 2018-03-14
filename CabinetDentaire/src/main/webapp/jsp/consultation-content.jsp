@@ -35,11 +35,10 @@
                 <td><s:property value="consultationNum" /></td>
                 <td><s:property value="typeConsultation" /></td>                
                 <td><s:property value="dateConsultation" /></td>
-                <td><s:property value="observations" /></td>
-                <td><s:property value="Motif" /></td>                
+                <td><s:property value="observations" /></td>               
                 <td>
-                    <button onclick="fetchRowRDV(this)" class="btn btn btn-info" data-toggle="modal" data-target="#updateModal">Update</button>
-                    <button onclick="deleteRDV(this)" class="btn btn btn-danger">Delete</button>
+                    <button onclick="fetchRowConsultation(this)" class="btn btn btn-info" data-toggle="modal" data-target="#updateModal">Update</button>
+                    <button onclick="deleteConsultation(this)" class="btn btn btn-danger">Delete</button>
                 </td>
             </tr>
         </s:iterator>
@@ -57,9 +56,9 @@
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="hidden" name="RdvNum" id="RdvNum">  
-                                <input type="hidden" name="PatientID" id="PatientID">
-                                <input type="hidden" name="RdvID" id="RdvID">
+                                <input type="hidden" name="DossierID" id="DossierID">  
+                                <input type="hidden" name="ConsultationID" id="ConsultationID">
+                               
                             </div>
                         </div>
                   
@@ -67,23 +66,28 @@
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="date" name="RdvDate" id="RdvDate" class="form-control input-sm" placeholder="Date de Rendez-vous">
+                                <input type="text" name="ConsultationNum" id="CcnsultationNum" class="form-control input-sm" placeholder="Numero de Consultation">
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="text" name="Heure" id="Heure" class="form-control input-sm" placeholder="Heure de Rendez-vous">
+                                <input type="text" name="Heure" id="heure" class="form-control input-sm" placeholder="Type de Consultation">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="text" name="Motif" id="Motif" class="form-control input-sm" placeholder="Motif">
+                                <input type="date" name="dateConsultation" id="dateConsultation" class="form-control input-sm" placeholder="Date de Consultation">
                             </div>
-                        </div>                        
+                        </div> 
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="date" name="Observations" id="observations" class="form-control input-sm" placeholder="Observations">
+                            </div>
+                        </div>   
                     </div>                    
-                    <button onclick="updateRecordRDV();" class="btn btn-info btn-block">Update</button>
+                    <button onclick="updateRecordConsultation();" class="btn btn-info btn-block">Update</button>
                     <div id="resp" class="text-center" style="margin-top: 13px;"></div>
                 </div>
             </div>
