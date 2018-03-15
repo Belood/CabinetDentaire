@@ -40,6 +40,52 @@ public class PatientAction extends ActionSupport {
 
     @Override
     public String execute() {
+        String res = "success";
+        if (getNom().length() == 0) {
+        addFieldError("nom", "Name is required.");
+        res = "input";
+        }
+        if (getPrenom().length() == 0) {
+        addFieldError("prenom", "Prenom is required.");
+        res = "input";
+        }
+        if (getAddresse().length() == 0) {
+        addFieldError("addresse", "Addresse is required.");
+        res = "input";
+        }
+        if (dateNaissance == null) {
+        addFieldError("dateNaissance", "DateNaissance is required.");
+        res = "input";
+        }
+        if (String.valueOf(getNumTel()).length() == 0) {
+        addFieldError("numTel", "NumTel is required.");
+        res = "input";
+        }
+        if (getEmail().length() == 0) {
+        addFieldError("email", "Email is required.");
+        res = "input";
+        }
+        if (getProfession().length() == 0) {
+        addFieldError("profession", "Profession is required.");
+        res = "input";
+        }
+        if (sexe == null) {
+        addFieldError("sexe", "Sexe is required.");
+        res = "input";
+        }
+        if (String.valueOf(getAge()).length() == 0) {
+        addFieldError("age", "Age is required.");
+        res = "input";
+        }
+        if (String.valueOf(getNumSS()).length() == 0) {
+        addFieldError("numSS", "NumSS is required.");
+        res = "input";
+        }
+        if (String.valueOf(getNumAssurance()).length() == 0) {
+        addFieldError("numAssurance", "NumAssurance is required.");
+        res = "input";
+        }
+        if(res.equals("input")) return res;
         Patient patient = new Patient(nom, prenom, addresse, dateNaissance, numTel, email, profession, sexe, age, numSS, numAssurance);
         PatientDAO p = new PatientDAO();
         try {
@@ -47,7 +93,7 @@ public class PatientAction extends ActionSupport {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return SUCCESS;
+        return res;
     }
 
     public String deletePatient() {
@@ -59,6 +105,52 @@ public class PatientAction extends ActionSupport {
     }
 
     public String updatePatient() {
+        String res = "success";
+        if (getNom().length() == 0) {
+        addFieldError("nom", "Name is required.");
+        res = "input";
+        }
+        if (getPrenom().length() == 0) {
+        addFieldError("prenom", "Prenom is required.");
+        res = "input";
+        }
+        if (getAddresse().length() == 0) {
+        addFieldError("addresse", "Addresse is required.");
+        res = "input";
+        }
+        if (dateNaissance == null) {
+        addFieldError("dateNaissance", "DateNaissance is required.");
+        res = "input";
+        }
+        if (String.valueOf(getNumTel()).length() == 0) {
+        addFieldError("numTel", "NumTel is required.");
+        res = "input";
+        }
+        if (getEmail().length() == 0) {
+        addFieldError("email", "Email is required.");
+        res = "input";
+        }
+        if (getProfession().length() == 0) {
+        addFieldError("profession", "Profession is required.");
+        res = "input";
+        }
+        if (sexe == null) {
+        addFieldError("sexe", "Sexe is required.");
+        res = "input";
+        }
+        if (String.valueOf(getAge()).length() == 0) {
+        addFieldError("age", "Age is required.");
+        res = "input";
+        }
+        if (String.valueOf(getNumSS()).length() == 0) {
+        addFieldError("numSS", "NumSS is required.");
+        res = "input";
+        }
+        if (String.valueOf(getNumAssurance()).length() == 0) {
+        addFieldError("numAssurance", "NumAssurance is required.");
+        res = "input";
+        }
+        if(res.equals("input")) return res;
        if( patientDAO.update(new Patient(patientId,nom,prenom,addresse, dateNaissance, numTel, email, profession, sexe, age, numSS, numAssurance)))
        {
            status="Update Successful";

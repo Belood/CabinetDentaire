@@ -70,10 +70,11 @@ public class RdvDAO extends CommonDAO {
             statement.setInt(4,rendez_vous.getRdvID());  
             statement.execute();
             statement.close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false ;
+        return false;
     }
     
     public boolean delete (int id)

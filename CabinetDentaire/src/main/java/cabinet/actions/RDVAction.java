@@ -36,6 +36,30 @@ public class RDVAction extends ActionSupport{
     @Override
     public String execute()
     {
+        String res = "success";
+        if (String.valueOf(getPatientID()).length() == 0) {
+        addFieldError("PatientID", "PatientID is required.");
+        res = "input";
+        }
+        if (String.valueOf(getRdvNum()).length() == 0) {
+        addFieldError("RdvNum", "RdvNum is required.");
+        res = "input";
+        }
+        if (RdvDate == null) {
+        addFieldError("RdvDate", "Date de Rendez-vous is required.");
+        res = "input";
+        }
+        if (getHeure().length() == 0) {
+        addFieldError("Heure", "Heure is required.");
+        res = "input";
+        }
+        if (getMotif().length() == 0) {
+        addFieldError("Motif", "Motif is required.");
+        res = "input";
+        }
+        
+        if(res.equals("input")) return res;
+
         RDV rendez_vous = new RDV(RdvID, PatientID, RdvNum, RdvDate, Heure, Motif);
         RdvDAO p = new RdvDAO();
         try {
@@ -48,6 +72,7 @@ public class RDVAction extends ActionSupport{
 
     public String deleteRDV()
     {
+
         if(RdvDao.delete(RdvID))
         {
             status = "Delete Successful";
@@ -58,7 +83,22 @@ public class RDVAction extends ActionSupport{
     
     public String updateRDV()
     {
-
+        String res = "update";
+        
+        if (getRdvDate().toString().length() == 0) {
+        addFieldError("RdvDate", "Date de Rendez-vous is required.");
+        res = "input";
+        }
+        if (getHeure().length() == 0) {
+        addFieldError("Heure", "Heure is required.");
+        res = "input";
+        }
+        if (getMotif().length() == 0) {
+        addFieldError("Motif", "Motif is required.");
+        res = "input";
+        }
+        
+        if(res.equals("input")) return res;
         if(RdvDao.update(new RDV(RdvID, PatientID, RdvNum, RdvDate, Heure, Motif)))
         {
             status = "Update Successful";

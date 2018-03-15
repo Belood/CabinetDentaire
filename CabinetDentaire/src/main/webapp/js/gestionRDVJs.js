@@ -34,7 +34,7 @@ function deleteRDV(that) {
         $.ajax({
             type: "POST",
             url: "deleteRDV.action",
-            data: "RdvID=" + $(that).parent().prev().prev().prev().prev().prev().text(),
+            data: "RdvID=" + $(that).parent().prev().prev().prev().prev().prev().prev().text(),
             success: function (data) {
                 if (data.status === "Delete Successful") {
                     alert("RDV successfully deleted");

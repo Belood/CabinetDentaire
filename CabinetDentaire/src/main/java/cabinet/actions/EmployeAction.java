@@ -37,8 +37,70 @@ public class EmployeAction extends ActionSupport {
     private EmployeDAO employeDAO=new EmployeDAO();
     private String status;
     
+
+
     @Override
     public String execute(){
+        String res = "success";
+        if (getNom().length() == 0) {
+        addFieldError("nom", "Name is required.");
+        res = "input";
+        }
+        if (getPrenom().length() == 0) {
+        addFieldError("prenom", "Prenom is required.");
+        res = "input";
+        }
+        if (getAddresse().length() == 0) {
+        addFieldError("addresse", "Addresse is required.");
+        res = "input";
+        }
+        if (dateNaissance == null) {
+        addFieldError("dateNaissance", "DateNaissance is required.");
+        res = "input";
+        }
+        if (String.valueOf(getNumTel()).length() == 0) {
+        addFieldError("numTel", "NumTel is required.");
+        res = "input";
+        }
+        if (String.valueOf(getAge()).length() == 0) {
+        addFieldError("age", "Age is required.");
+        res = "input";
+        }
+        if (getEmail().length() == 0) {
+        addFieldError("email", "Email is required.");
+        res = "input";
+        }
+        if (String.valueOf(getSalaire()).length() == 0) {
+        addFieldError("salaire", "Salaire is required.");
+        res = "input";
+        }
+        if (String.valueOf(getAge()).length() == 0) {
+        addFieldError("age", "Age is required.");
+        res = "input";
+        }
+        if (dateEmbauche == null) {
+        addFieldError("dateEmbauche", "DateEmbauche is required.");
+        res = "input";
+        }
+        if (getLogin().length() == 0) {
+        addFieldError("login", "Login is required.");
+        res = "input";
+        }
+        if (getPassword().length() == 0) {
+        addFieldError("password", "Password is required.");
+        res = "input";
+        }
+        if (String.valueOf(getNiveauDroits()).length() == 0) {
+        addFieldError("niveauDroits", "NiveauDroits is required.");
+        res = "input";
+        }
+        if (getDiscriminator().length() == 0) {
+        addFieldError("discriminator", "Discriminator is required.");
+        res = "input";
+        }
+        
+        if(res.equals("input")) return res;
+        
         Employe employe=new Employe(getNom(), getPrenom(), getAddresse(), getDateNaissance(), getNumTel(), getEmail(), getAge(), getSalaire(), getDateEmbauche(), getLogin(), getPassword(), getNiveauDroits(), getDiscriminator());
         EmployeDAO employeDAO= new EmployeDAO();
         try{
@@ -47,7 +109,7 @@ public class EmployeAction extends ActionSupport {
         catch(Exception e){
             e.printStackTrace();
         }
-        return SUCCESS;
+        return res;
     }
     public String tableEmploye(){
         try{
@@ -95,6 +157,65 @@ public class EmployeAction extends ActionSupport {
     }
 
     public String updateEmploye() {
+        String res = "update";
+        if (getNom().length() == 0) {
+        addFieldError("nom", "Name is required.");
+        res = "input";
+        }
+        if (getPrenom().length() == 0) {
+        addFieldError("prenom", "Prenom is required.");
+        res = "input";
+        }
+        if (getAddresse().length() == 0) {
+        addFieldError("addresse", "Addresse is required.");
+        res = "input";
+        }
+        if (dateNaissance == null) {
+        addFieldError("dateNaissance", "DateNaissance is required.");
+        res = "input";
+        }
+        if (String.valueOf(getNumTel()).length() == 0) {
+        addFieldError("numTel", "NumTel is required.");
+        res = "input";
+        }
+        if (String.valueOf(getAge()).length() == 0) {
+        addFieldError("age", "Age is required.");
+        res = "input";
+        }
+        if (getEmail().length() == 0) {
+        addFieldError("email", "Email is required.");
+        res = "input";
+        }
+        if (String.valueOf(getSalaire()).length() == 0) {
+        addFieldError("salaire", "Salaire is required.");
+        res = "input";
+        }
+        if (String.valueOf(getAge()).length() == 0) {
+        addFieldError("age", "Age is required.");
+        res = "input";
+        }
+        if (dateEmbauche == null) {
+        addFieldError("dateEmbauche", "DateEmbauche is required.");
+        res = "input";
+        }
+        if (getLogin().length() == 0) {
+        addFieldError("login", "Login is required.");
+        res = "input";
+        }
+        if (getPassword().length() == 0) {
+        addFieldError("password", "Password is required.");
+        res = "input";
+        }
+        if (String.valueOf(getNiveauDroits()).length() == 0) {
+        addFieldError("niveauDroits", "NiveauDroits is required.");
+        res = "input";
+        }
+        if (getDiscriminator().length() == 0) {
+        addFieldError("discriminator", "Discriminator is required.");
+        res = "input";
+        }
+        
+        if(res.equals("input")) return res;
        if( employeDAO.update(new Employe( getPersonnelID(),getNom(), getPrenom(), getAddresse(), getDateNaissance(), getNumTel(), getEmail(), getAge(), getSalaire(), getDateEmbauche(), getLogin(), getPassword(), getNiveauDroits(), getDiscriminator())));
        {
             setStatus("Update Successful");
