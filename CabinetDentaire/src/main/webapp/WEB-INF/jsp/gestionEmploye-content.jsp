@@ -21,8 +21,10 @@
         <s:textfield type="date" label="DateEmbauche" name="dateEmbauche"/>
         <s:textfield placeholder="Login"  name="login"/>
         <s:textfield placeholder="Password"  name="password"/>
-        <s:textfield placeholder="NiveauDroits"  name="niveauDroits"/>
-        <s:radio list="{'Dentiste','Infirmier','Secretaire'}" name="Discriminator" labelposition="inline" label="Emploi"/>  
+        <s:select name = "niveauDroits" label = "NiveauDroits"
+            list = "{0,1,2,3}" />
+        <s:select name = "Discriminator" label = "Emploi"
+            list="{'Dentiste','Infirmier','Secretaire'}" />
         <s:submit cssClass="btn btn-info center-block" value="Ajouter" />
     </s:form>
 </div>
