@@ -10,7 +10,9 @@ import cabinet.models.PatientDAO;
 import com.opensymphony.xwork2.ActionSupport;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+
 
 /**
  *
@@ -42,50 +44,57 @@ public class PatientAction extends ActionSupport {
     public String execute() {
         String res = "success";
         if (getNom().length() == 0) {
-        addFieldError("nom", "Name is required.");
-        res = "input";
+            addFieldError("nom", "Name is required.");
+            res = "input";
         }
         if (getPrenom().length() == 0) {
-        addFieldError("prenom", "Prenom is required.");
-        res = "input";
+            addFieldError("prenom", "Prenom is required.");
+            res = "input";
         }
         if (getAddresse().length() == 0) {
-        addFieldError("addresse", "Addresse is required.");
-        res = "input";
+            addFieldError("addresse", "Addresse is required.");
+            res = "input";
         }
-        if (dateNaissance == null) {
-        addFieldError("dateNaissance", "DateNaissance is required.");
-        res = "input";
+        try {
+            LocalDate.parse(getDateNaissance().toString());
+          
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            addFieldError("dateNaissance", "DateNaissance is required.");
+             res = "input";
         }
         if (String.valueOf(getNumTel()).length() == 0) {
-        addFieldError("numTel", "NumTel is required.");
-        res = "input";
+            addFieldError("numTel", "NumTel is required.");
+            res = "input";
         }
         if (getEmail().length() == 0) {
-        addFieldError("email", "Email is required.");
-        res = "input";
+            addFieldError("email", "Email is required.");
+            res = "input";
         }
         if (getProfession().length() == 0) {
-        addFieldError("profession", "Profession is required.");
-        res = "input";
+            addFieldError("profession", "Profession is required.");
+            res = "input";
         }
         if (sexe == null) {
-        addFieldError("sexe", "Sexe is required.");
-        res = "input";
+            addFieldError("sexe", "Sexe is required.");
+            res = "input";
         }
         if (String.valueOf(getAge()).length() == 0) {
-        addFieldError("age", "Age is required.");
-        res = "input";
+            addFieldError("age", "Age is required.");
+            res = "input";
         }
         if (String.valueOf(getNumSS()).length() == 0) {
-        addFieldError("numSS", "NumSS is required.");
-        res = "input";
+            addFieldError("numSS", "NumSS is required.");
+            res = "input";
         }
         if (String.valueOf(getNumAssurance()).length() == 0) {
-        addFieldError("numAssurance", "NumAssurance is required.");
-        res = "input";
+            addFieldError("numAssurance", "NumAssurance is required.");
+            res = "input";
         }
-        if(res.equals("input")) return res;
+        if (res.equals("input")) {
+            return res;
+        }
+        
         Patient patient = new Patient(nom, prenom, addresse, dateNaissance, numTel, email, profession, sexe, age, numSS, numAssurance);
         PatientDAO p = new PatientDAO();
         try {
@@ -107,55 +116,56 @@ public class PatientAction extends ActionSupport {
     public String updatePatient() {
         String res = "success";
         if (getNom().length() == 0) {
-        addFieldError("nom", "Name is required.");
-        res = "input";
+            addFieldError("nom", "Name is required.");
+            res = "input";
         }
         if (getPrenom().length() == 0) {
-        addFieldError("prenom", "Prenom is required.");
-        res = "input";
+            addFieldError("prenom", "Prenom is required.");
+            res = "input";
         }
         if (getAddresse().length() == 0) {
-        addFieldError("addresse", "Addresse is required.");
-        res = "input";
+            addFieldError("addresse", "Addresse is required.");
+            res = "input";
         }
         if (dateNaissance == null) {
-        addFieldError("dateNaissance", "DateNaissance is required.");
-        res = "input";
+            addFieldError("dateNaissance", "DateNaissance is required.");
+            res = "input";
         }
         if (String.valueOf(getNumTel()).length() == 0) {
-        addFieldError("numTel", "NumTel is required.");
-        res = "input";
+            addFieldError("numTel", "NumTel is required.");
+            res = "input";
         }
         if (getEmail().length() == 0) {
-        addFieldError("email", "Email is required.");
-        res = "input";
+            addFieldError("email", "Email is required.");
+            res = "input";
         }
         if (getProfession().length() == 0) {
-        addFieldError("profession", "Profession is required.");
-        res = "input";
+            addFieldError("profession", "Profession is required.");
+            res = "input";
         }
         if (sexe == null) {
-        addFieldError("sexe", "Sexe is required.");
-        res = "input";
+            addFieldError("sexe", "Sexe is required.");
+            res = "input";
         }
         if (String.valueOf(getAge()).length() == 0) {
-        addFieldError("age", "Age is required.");
-        res = "input";
+            addFieldError("age", "Age is required.");
+            res = "input";
         }
         if (String.valueOf(getNumSS()).length() == 0) {
-        addFieldError("numSS", "NumSS is required.");
-        res = "input";
+            addFieldError("numSS", "NumSS is required.");
+            res = "input";
         }
         if (String.valueOf(getNumAssurance()).length() == 0) {
-        addFieldError("numAssurance", "NumAssurance is required.");
-        res = "input";
+            addFieldError("numAssurance", "NumAssurance is required.");
+            res = "input";
         }
-        if(res.equals("input")) return res;
-       if( patientDAO.update(new Patient(patientId,nom,prenom,addresse, dateNaissance, numTel, email, profession, sexe, age, numSS, numAssurance)))
-       {
-           status="Update Successful";
-       }
-       return "update";
+        if (res.equals("input")) {
+            return res;
+        }
+        if (patientDAO.update(new Patient(patientId, nom, prenom, addresse, dateNaissance, numTel, email, profession, sexe, age, numSS, numAssurance))) {
+            status = "Update Successful";
+        }
+        return "update";
     }
 
     public String tablePatient() {

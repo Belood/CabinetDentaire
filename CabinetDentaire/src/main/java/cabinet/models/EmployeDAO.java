@@ -227,11 +227,11 @@ public class EmployeDAO extends CommonDAO {
         try {
             PreparedStatement ps = connection.conn.prepareStatement(SQLConstant.FindAll_EMPLOYE);
             rs = ps.executeQuery();
-            return rs;
+           
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        }
+        } return rs;
     }
 
     @Override

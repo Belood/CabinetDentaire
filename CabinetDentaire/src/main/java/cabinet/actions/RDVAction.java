@@ -9,8 +9,11 @@ import cabinet.javabeans.RDV;
 import cabinet.models.RdvDAO;
 import com.opensymphony.xwork2.ActionSupport;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 
 /**
  *
@@ -45,7 +48,16 @@ public class RDVAction extends ActionSupport{
         addFieldError("RdvNum", "RdvNum is required.");
         res = "input";
         }
-        if (RdvDate == null) {
+        
+         try {
+            LocalDate.parse(getRdvDate().toString());
+          
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            addFieldError("dateNaissance", "DateNaissance is required.");
+              res = "input";
+        }
+        if (!Optional.ofNullable(getRdvDate()).isPresent()) {
         addFieldError("RdvDate", "Date de Rendez-vous is required.");
         res = "input";
         }

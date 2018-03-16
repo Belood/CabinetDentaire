@@ -62,9 +62,13 @@
                 <td><s:property value="numSS" /></td>
                 <td><s:property value="numAssurance"/></td>
                 <td>
-                    <button onclick="fetchRow(this)" class="btn btn btn-info" data-toggle="modal" data-target="#updateModal">Update</button>
-                    <a href="showConsultation" ><button onclick="showConsultation(this)" class="btn btn btn-primary">Dossier</button></a>
-                    <button onclick="deletePatient(this)" class="btn btn btn-danger">Delete</button>
+                    <button onclick="fetchRow(this)" class="btn btn-sm btn-info" data-toggle="modal" data-target="#updateModal">Update</button>
+                    <s:form action="showConsultation" theme="bootstrap">
+                        <s:hidden  value="%{patientID}" name="patientId" />
+                        <s:submit cssClass="btn btn-primary btn-sm" value="Dossier"/>
+                    </s:form>
+                    <!-- <button onclick="showConsultation(this)" class="btn btn-sm btn-primary">Dossier</button> -->
+                    <button onclick="deletePatient(this)" class="btn btn-sm btn-danger">Delete</button>
                 </td>
             </tr>
         </s:iterator>

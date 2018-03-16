@@ -23,12 +23,12 @@
     <table class="table table-bordered table-hover table-condensed" id="patientTable">
         <thead>
             <tr>
-                <th>ID Rendez-vous</th>
                 <th>Numero de Rendez-vous</th>
                 <th>Numero de Patient</th>
                 <th>Date de Rendez-vous</th>
                 <th>Heure de Rendez-vous</th>
-                <th>Motif</th>                
+                <th>Motif</th>     
+                <th>Action</th>
             </tr>
         </thead>
         <s:iterator value="RDVList">

@@ -31,56 +31,71 @@ public class ConsultationAction extends ActionSupport {
 
     @Override
     public String execute() {
-        int res = -1;
-        try {
-            res = consultDao.retrieveDossier(patientId);
-
-            setDossierID(res);
-
-            Consultation consult = new Consultation(getDossierID(), 1, "t", LocalDate.parse("2018-03-21"), "ytr");
-            ConsultationDAO consultDAO = new ConsultationDAO();
-            consultDAO.create(consult);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(String.valueOf(getDossierID()).length()==0){
+            addFieldError("dossierID", "DossierID is required.");
         }
+        if(String.valueOf(getConsultationNum()).length()==0){
+            addFieldError("consultationNum", "ConsultationNum is required.");
+        }
+        if(getTypeConsultation().length()==0){
+            addFieldError("typeConsultation", "TypeConsultation is required.");
+        }
+        if(getObservations().length()==0){
+            addFieldError("observations", "Observations is required.");
+        }
+        try {
+            LocalDate.parse(getDateConsultation().toString());
+          
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            addFieldError("dateConsultation", "DateConsultation is required.");
+            return INPUT;
+        }
+        consultDao.create(new Consultation(dossierID, consultationNum, typeConsultation, dateConsultation, observations));
         return SUCCESS;
     }
 
     public String showConsultation() {
-        int res = -1;
         try {
-
-            res = consultDao.retrieveDossier(patientId);
-            setDossierID(res);
-            ResultSet resultSet = consultDao.findAll(getDossierID());
+            ResultSet rs = consultDao.findAllbyDossierID(patientId);
             consultList = new ArrayList<Consultation>();
-            if (resultSet != null) {
-                while (resultSet.next()) {
+            if (rs != null) {
+                while (rs.next()) {
                     Consultation consult = new Consultation();
-
-                    consult.setConsultationNum(resultSet.getInt("ConsultationNum"));
-                    consult.setDateConsultation(resultSet.getString("DateConsultation"));
-                    consult.setDossierID(resultSet.getInt("DossierID"));
-                    consult.setObservations(resultSet.getString("Observations"));
-                    consult.setTypeConsultation(resultSet.getString("typeConsultation"));
+                    consult.setConsultationNum(rs.getInt("ConsultationNum"));
+                    consult.setDateConsultation(rs.getString("DateConsultation"));
+                    consult.setDossierID(rs.getInt("DossierID"));
+                    consult.setObservations(rs.getString("Observations"));
+                    consult.setTypeConsultation(rs.getString("typeConsultation"));
                     consultList.add(consult);
-                    return "success";
                 }
-            } else {
-                return null;
+                return "success";
             }
-
         } catch (Exception e) {
             e.printStackTrace();
-            return "input";
         }
         return "input";
     }
 
-    /**
-     * @return the consultationID
-     */
-    public int getConsultationID() {
+    public String update() {
+        consultDao.update(new Consultation(dossierID,consultationNum,typeConsultation,observations)) ;
+            status = "Update Successful";
+        return "update";
+    }
+
+    public String delete() {
+        if (consultDao.delete(dossierID,consultationNum)) {
+            status = "Delete Successful";
+        }
+
+        return "delete";
+    }
+
+
+/**
+ * @return the consultationID
+ */
+public int getConsultationID() {
         return consultationID;
     }
 
@@ -143,8 +158,8 @@ public class ConsultationAction extends ActionSupport {
     /**
      * @param dateConsultation the dateConsultation to set
      */
-    public void setDateConsultation(LocalDate dateConsultation) {
-        this.dateConsultation = dateConsultation;
+    public void setDateConsultation(String dateConsultation) {
+        this.dateConsultation = LocalDate.parse(dateConsultation);
     }
 
     /**

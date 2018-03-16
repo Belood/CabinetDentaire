@@ -32,7 +32,10 @@
                 <td><s:property value="dateCreation" /></td>
                 <td><s:property value="dateDerniereModif" /></td>   
                 <td>
-                    <a href="showConsultation" ><button onclick="showConsultation(this)" class="btn btn btn-primary">Consultation</button></a>
+                   <s:form action="showConsultation" theme="bootstrap">
+                        <s:hidden  value="%{patientID}" name="patientId" />
+                        <s:submit cssClass="btn btn-primary btn-sm" value="Consultations"/>
+                    </s:form>
                 </td>
             </tr>
         </s:iterator>

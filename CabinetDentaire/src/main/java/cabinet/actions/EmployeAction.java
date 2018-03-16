@@ -10,8 +10,8 @@ import cabinet.models.EmployeDAO;
 import com.opensymphony.xwork2.ActionSupport;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
@@ -44,11 +44,11 @@ public class EmployeAction extends ActionSupport implements SessionAware {
 
     public String login() {
         try {
-            Employe emp=employeDAO.validate(getLogin(), getPassword());
-            if (emp!= null) {
+            Employe emp = employeDAO.validate(getLogin(), getPassword());
+            if (emp != null) {
                 sessionMap.put("login", getLogin());
                 //System.out.println(emp.getNiveauDroits());
-                sessionMap.put("level",emp.getNiveauDroits());
+                sessionMap.put("level", emp.getNiveauDroits());
                 return "success";
             }
         } catch (Exception e) {
@@ -79,7 +79,10 @@ public class EmployeAction extends ActionSupport implements SessionAware {
             addFieldError("addresse", "Addresse is required.");
             res = "input";
         }
-        if (dateNaissance == null) {
+        try {
+            LocalDate.parse(getDateNaissance().toString());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
             addFieldError("dateNaissance", "DateNaissance is required.");
             res = "input";
         }
@@ -103,10 +106,15 @@ public class EmployeAction extends ActionSupport implements SessionAware {
             addFieldError("age", "Age is required.");
             res = "input";
         }
-        if (dateEmbauche == null) {
+        try {
+            LocalDate.parse(getDateEmbauche().toString());
+
+        } catch (NullPointerException e) {
+            e.printStackTrace();
             addFieldError("dateEmbauche", "DateEmbauche is required.");
             res = "input";
         }
+
         if (getLogin().length() == 0) {
             addFieldError("login", "Login is required.");
             res = "input";

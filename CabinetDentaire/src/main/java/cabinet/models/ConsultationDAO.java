@@ -17,18 +17,18 @@ import java.util.logging.Logger;
  * @author USER
  */
 public class ConsultationDAO extends CommonDAO {
-
-    public ResultSet findAll(int id) {
-        ResultSet rs = null;
+    
+        public ResultSet findAllbyDossierID(int id) {
+        ResultSet rs=null;
         try {
-            PreparedStatement ps = connection.conn.prepareStatement(SQLConstant.FindAll_consult);
-            ps.setInt(1,id );
-            rs = ps.executeQuery();
-            return rs;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            PreparedStatement ps = connection.conn.prepareStatement(SQLConstant.FindAllByDossierID);
+            ps.setInt(1,id);
+            //System.out.println("------------> "+id);
+            rs= ps.executeQuery();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
+            return rs;
     }
             
     public Consultation create(Consultation consult) {
@@ -36,8 +36,7 @@ public class ConsultationDAO extends CommonDAO {
             
 
             PreparedStatement statement=connection.conn.prepareStatement(SQLConstant.INSERT_consult);
-           
-            
+          
             statement.setInt(1, consult.getDossierID());
             statement.setInt(2, consult.getConsultationNum());
             statement.setString(3, consult.getTypeConsultation());
@@ -54,7 +53,35 @@ public class ConsultationDAO extends CommonDAO {
         }
         return consult;
     }
-
+    public boolean update(Consultation consult){
+         try {
+            PreparedStatement statement = connection.conn.prepareStatement(SQLConstant.UPDATE_CONSULT);
+            statement.setString(1, consult.getObservations());
+            statement.setString(2, consult.getTypeConsultation());
+            statement.setInt(3, consult.getConsultationNum());
+            statement.setInt(4,consult.getDossierID());
+             //System.out.println(statement.toString());
+            statement.execute();
+            statement.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean delete(int dossierID,int consultationNum){
+         try {
+            PreparedStatement statement = connection.conn.prepareStatement(SQLConstant.DELETE_CONSULT);
+            statement.setInt(1,dossierID);
+            statement.setInt(2,consultationNum);
+            statement.executeUpdate();
+            statement.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     @Override
     public Object read(Object o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -88,22 +115,5 @@ public class ConsultationDAO extends CommonDAO {
     @Override
     public Object create(Object o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public int retrieveDossier(int id) {
-        PreparedStatement preStatement;
-        int res = -1;
-        try {
-            preStatement = connection.conn.prepareStatement(SQLConstant.SELECT_DossierID);
-            preStatement.setInt(1,id);
-            System.out.println("------------> "+id);
-            ResultSet resultSet = preStatement.executeQuery();
-            res=resultSet.getInt("DossierID");
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-            
-            return res;
-    }
-    
+    } 
 }

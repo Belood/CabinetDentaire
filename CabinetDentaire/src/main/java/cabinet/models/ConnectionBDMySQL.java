@@ -38,10 +38,10 @@ public class ConnectionBDMySQL {
     public static  ConnectionBDMySQL getInstance() {
         if ( db == null ) {
             db = new ConnectionBDMySQL();
-            System.out.println("INSTANCIATION DE LA CONNEXION SQL ! ");
+            //System.out.println("INSTANCIATION DE LA CONNEXION SQL ! ");
         }
         else{
-            System.out.println("CONNEXION SQL EXISTANTE ! ");
+           // System.out.println("CONNEXION SQL EXISTANTE ! ");
         }
         return db;
  

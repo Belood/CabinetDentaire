@@ -20,7 +20,15 @@ public class Consultation implements Serializable {
     private String typeConsultation;
     private LocalDate dateConsultation;
     private String observations;
-    
+
+    public Consultation(int dossierID, int consultationNum, String typeConsultation, String observations) {
+        this.dossierID = dossierID;
+        this.consultationNum = consultationNum;
+        this.typeConsultation = typeConsultation;
+        this.observations = observations;
+    }
+
+
  @Override
     public String toString() {
         return "Consultation{" + "consultationID=" + consultationID + ", dossierID=" + dossierID + ", consultationNum=" + consultationNum + ", typrConsultation=" + typeConsultation + ", dateConsultation=" + dateConsultation + ", observations=" + observations + '}';

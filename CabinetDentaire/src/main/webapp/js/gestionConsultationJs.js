@@ -5,7 +5,8 @@
  * and open the template in the editor.
  */
 
-function fetchRow(that) {
+function fetchRowConsultation(that) {
+    
     $("#dossierID").val($(that).parent().prev().prev().prev().prev().prev().text());
     $("#consultationNum").val($(that).parent().prev().prev().prev().prev().text());
     $("#typeConsultation").val($(that).parent().prev().prev().prev().text());
@@ -34,7 +35,7 @@ function deleteConsultation(that) {
         $.ajax({
             type: "POST",
             url: "deleteConsultation.action",
-            data: "dossierID=" + (that).parent().prev().prev().prev().prev().prev().text(),
+            data: "dossierID=" + $(that).parent().prev().prev().prev().prev().prev().text()+"&consultationNum="+$(that).parent().prev().prev().prev().prev().text(),
             success: function (data) {
                 if (data.status === "Delete Successful") {
                     alert("Consultattion successfully deleted");
@@ -53,5 +54,5 @@ function deleteConsultation(that) {
 
 
 $(document).ready(function () {
-    $('#consultationTable').dataTable();
+    $('#consultTable').dataTable();
 });

@@ -3,6 +3,7 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
     <constant name = "struts.devMode" value = "true" />
+    
     <package name="public" extends="struts-default">
         <action name="acceuil">
             <result>/WEB-INF/jsp/acceuil.jsp</result>
@@ -16,6 +17,7 @@
             <result>login.jsp</result>
         </action>
     </package>
+    
     <package name="CabinetDentaire" extends="json-default">
         <interceptors>
             <interceptor name="auth" class="cabinet.interceptor.AuthInterceptor"/>
@@ -35,46 +37,37 @@
             <result name="success">/WEB-INF/jsp/acceuil.jsp</result>     
         </action> 
         
-           <!-- Actions pour employés -->
+        <!-- Actions pour employés -->
         <action name="GestionEmploye" class="cabinet.actions.EmployeAction" method="tableEmploye">
             <interceptor-ref name="admin"/>
             <result name="findAll">/WEB-INF/jsp/gestionEmploye.jsp</result>
-        </action>
-        
-        <action name="AddEmploye" class="cabinet.actions.EmployeAction" method="execute">
-             <interceptor-ref name="admin"/>
+        </action>       
+        <action name="AddEmploye" class="cabinet.actions.EmployeAction" method="execute">         
             <result name="success">/WEB-INF/jsp/gestionEmploye.jsp</result>
             <result name="input">/WEB-INF/jsp/gestionEmploye.jsp</result>
-        </action> 
-        
+        </action>        
         <action name="updateEmploye" class="cabinet.actions.EmployeAction" method="updateEmploye">
-            <interceptor-ref name="admin"/>
             <result name="update" type="json"></result>
             <result name="input">/WEB-INF/jsp/acceuil.jsp</result>
-        </action>
-        
+        </action>        
         <action name="deleteEmploye" class="cabinet.actions.EmployeAction" method="deleteEmploye">
-            <interceptor-ref name="admin"/>
             <result name="delete" type="json"></result>
             <result name="input">/WEB-INF/jsp/acceuil.jsp</result>
         </action>
-        
+               
         <!-- Actions pour patients -->
         <action name="GestionPatient" class="cabinet.actions.PatientAction" method="tablePatient">
             <result name="findAll">/WEB-INF/jsp/gestionPatient.jsp</result>
             <result name="input">/WEB-INF/jsp/acceuil.jsp</result>
         </action>
-        
         <action name="AddPatient" class="cabinet.actions.PatientAction" method="execute">
             <result name="success">/WEB-INF/jsp/gestionPatient.jsp</result>
             <result name="input">/WEB-INF/jsp/gestionPatient.jsp</result>
         </action>
-        
         <action name="updatePatient" class="cabinet.actions.PatientAction" method="updatePatient">
             <result name="update" type="json"></result>
             <result name="input">/WEB-INF/jsp/acceuil.jsp</result>
         </action>
-        
         <action name="deletePatient" class="cabinet.actions.PatientAction" method="deletePatient">
             <result name="delete" type="json"></result>
             <result name="input">/WEB-INF/jsp/acceuil.jsp</result>
@@ -85,7 +78,7 @@
             <result name="findAll">/WEB-INF/jsp/gestionDossier.jsp</result>
             <result name="input">/WEB-INF/jsp/acceuil.jsp</result>
         </action>
-        
+    
         <!-- Actions pour consultations -->
         <action name="showConsultation" class="cabinet.actions.ConsultationAction" method="showConsultation">
             <result name="success">/WEB-INF/jsp/consultations.jsp</result>
@@ -94,32 +87,33 @@
         
         <action name="createConsultation" class="cabinet.actions.ConsultationAction" method="execute">
             <result name="success">/WEB-INF/jsp/consultations.jsp</result>
+            <result name="input">/WEB-INF/jsp/acceuil.jsp</result>
         </action>
         
+        <action name="updateConsultation" class="cabinet.actions.ConsultationAction" method="update">
+            <result name="update" type="json"></result>
+            <result name="input">/WEB-INF/jsp/acceuil.jsp</result>
+        </action>        
+        <action name="deleteConsultation" class="cabinet.actions.ConsultationAction" method="delete">
+            <result name="delete" type="json"></result>
+            <result name="input">/WEB-INF/jsp/acceuil.jsp</result>
+        </action>
         <!-- Actions pour RDV -->
         <action name="GestionRDV" class="cabinet.actions.RDVAction" method="tableRDV">
             <result name="findAll">/WEB-INF/jsp/GestionRDV.jsp</result>
             <result name="input">/WEB-INF/jsp/acceuil.jsp</result>
-        </action>   
-        
+        </action>           
         <action name="AddRDV" class="cabinet.actions.RDVAction" method="execute">
             <result name="success">/WEB-INF/jsp/GestionRDV.jsp</result>
             <result name="input">/WEB-INF/jsp/GestionRDV.jsp</result>
-        </action>
-        
+        </action>       
         <action name="updateRDV" class="cabinet.actions.RDVAction" method="updateRDV">
             <result name="update" type="json"></result>
             <result name="input">/WEB-INF/jsp/acceuil.jsp</result>
-        </action>
-        
+        </action>        
         <action name="deleteRDV" class="cabinet.actions.RDVAction" method="deleteRDV">
             <result name="delete" type="json"></result>
             <result name="input">/WEB-INF/jsp/acceuil.jsp</result>
         </action>
     </package>
-
-
-
-        
-     
 </struts>
