@@ -4,32 +4,14 @@
  * and open the template in the editor.
  */
 package cabinet.models;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
  *
- * @author assil
+ * @author Alexandre
  */
-public class LoginDAO extends CommonDAO{
-    
-    
-    public boolean validate(String username, String password){  
- boolean status=false;
-  try
-  {  
-   PreparedStatement ps=connection.conn.prepareStatement("select * from allusers where username=? AND password=?");  
-   ps.setString(1,username);  
-   ps.setString(2,password);
-   ResultSet rs = ps.executeQuery();  
-   status = rs.next();
- }
- catch(Exception e){e.printStackTrace();}  
- return status;  
-}
+public class DossierDAO extends CommonDAO {
 
     @Override
     public Object create(Object o) {
@@ -62,8 +44,16 @@ public class LoginDAO extends CommonDAO{
     }
 
     @Override
-    public Object findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ResultSet findAll() {
+        ResultSet rs=null;
+           try {
+            PreparedStatement ps = connection.conn.prepareStatement(SQLConstant.FindAll_DOSSIER);
+            rs = ps.executeQuery();
+            return rs;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     
 }

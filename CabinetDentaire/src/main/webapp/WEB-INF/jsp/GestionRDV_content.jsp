@@ -7,7 +7,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <script src="${pageContext.request.contextPath}/js/gestionRDVJs.js" charset="utf-8"></script>
-<div class="col-sm-2">
+<div class="col-xs-2">
     <h2> Ajout d'un Rendez-vous</h2>
     <s:form action="AddRDV" method="post" enctype="multipart/form-data" theme="bootstrap" cssClass="form-vertical">
         <s:textfield name="RdvNum"  placeholder="Numero de Rendez-vous"/>
@@ -18,7 +18,8 @@
         <s:submit cssClass="btn btn-info center-block" value="Ajouter"  />
     </s:form>
 </div>
-<div class="col-sm-10">
+<div class="col-xs-10">
+    <h2 class="text-center">Liste des rendez-vous</h2>
     <table class="table table-bordered table-hover table-condensed" id="patientTable">
         <thead>
             <tr>
@@ -32,7 +33,6 @@
         </thead>
         <s:iterator value="RDVList">
             <tr>
-                <td><s:property value="RdvID" /></td>
                 <td><s:property value="RdvNum" /></td>
                 <td><s:property value="PatientID" /></td>                
                 <td><s:property value="RdvDate" /></td>
@@ -63,7 +63,7 @@
                                 <input type="hidden" name="RdvID" id="RdvID">
                             </div>
                         </div>
-                  
+
                     </div>                    
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">

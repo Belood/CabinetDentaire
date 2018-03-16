@@ -35,14 +35,14 @@ function updateRecord() {
 }
 
 function deletePatient(that) {
-    if (confirm('Confirmer la suppression')) {
+    if (confirm('Confirmer la suppression du patient et de son dossier?')) {
         $.ajax({
             type: "POST",
             url: "deletePatient.action",
             data: "patientId=" + $(that).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text(),
             success: function (data) {
                 if (data.status === "Delete Successful") {
-                    alert("Patient successfully deleted");
+                    alert("Delete successful");
                     $(that).closest('tr').remove();
 
                 } else {

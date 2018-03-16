@@ -4,7 +4,7 @@
     Author     : assil
 --%>
 
-<jsp:include page="/jsp/template.jsp">
+<jsp:include page="/WEB-INF/jsp/template.jsp">
 	<jsp:param name="content" value="GestionRDV_content"/>
 	<jsp:param name="title" value="Gestion des RDVs"/>
 </jsp:include>

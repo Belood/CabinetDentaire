@@ -4,5 +4,5 @@
     Author     : Alexandre
 --%>
 <footer class="container-fluid text-center fixed-bottom">
-    <p>Footer text</p>
+    <p>Alexandre Ung, David Ginesy, Assil Essimmou</p>
 </footer>

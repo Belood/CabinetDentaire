@@ -1,6 +1,6 @@
 <%-- 
-    Document   : newjsp
-    Created on : 6 mars 2018, 15:44:12
+    Document   : dossierPatient-content
+    Created on : 15 mars 2018, 18:07:08
     Author     : Alexandre
 --%>
 
@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Succes page</title>
+        <title>JSP Page</title>
     </head>
     <body>
-        <h1>Patient ajouté</h1>
+        <h1>Hello World!</h1>
     </body>
 </html>

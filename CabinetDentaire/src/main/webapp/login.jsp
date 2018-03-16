@@ -27,10 +27,9 @@
                 <div class="avatar">saguenay Teeth</div>
                 <div class="form-box">
                     <s:form action="login" theme="simple">
-                        <s:textfield label="username" key="username" theme="simple" placeholder="username" />
-                        <s:password label="Password" key="password" theme="simple" placeholder="password" />
-                        <s:submit class="btn btn-info btn-block login" theme="simple" />
-
+                        <s:textfield key="login" placeholder="username" requiredLabel="true" />
+                        <s:password key="password" placeholder="password" requiredLabel="true" />
+                        <s:submit class="btn btn-block btn-primary" value="Se connecter"/>
                     </s:form>  
 
                 </div>

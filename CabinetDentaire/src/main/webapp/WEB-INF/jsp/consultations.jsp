@@ -4,7 +4,7 @@
     Author     : USER
 --%>
 
-<jsp:include page="/jsp/template.jsp">
+<jsp:include page="/WEB-INF/jsp/template.jsp">
 	<jsp:param name="content" value="consultation-content"/>
 	<jsp:param name="title" value="Gestion des consultations"/>
 </jsp:include>

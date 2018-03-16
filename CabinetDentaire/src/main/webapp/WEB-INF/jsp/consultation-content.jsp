@@ -7,18 +7,17 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <script src="${pageContext.request.contextPath}/js/gestionPatientJs.js" charset="utf-8"></script>
-<div class="col-sm-2">
+<div class="col-xs-2">
     <h2> Ajout d'une consultation</h2>
     <s:form action="createConsultation" method="post" enctype="multipart/form-data" theme="bootstrap" cssClass="form-vertical">
         <s:textfield name="consultationNum"  placeholder="Numero de Consultation"/>
         <s:textfield name="typeConsultation"  placeholder="Type de Consultation"/>        
         <s:textfield type="date" name="dateConsultation" label="Date de Consultation" />        
         <s:textfield name="observations"  placeholder="Observations"/>
-         
-        <s:submit cssClass="btn btn-info center-block" value="Ajouter"  />
+        <s:submit cssClass="btn btn-info center-block" value="Ajouter"/>
     </s:form>
 </div>
-<div class="col-sm-10">
+<div class="col-xs-10">
     <table class="table table-bordered table-hover table-condensed" id="patientTable">
         <thead>
             <tr>

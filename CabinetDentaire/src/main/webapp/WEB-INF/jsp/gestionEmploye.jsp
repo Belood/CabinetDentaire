@@ -6,7 +6,7 @@
 
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:include page="/jsp/template.jsp">
+<jsp:include page="/WEB-INF/jsp/template.jsp">
 	<jsp:param name="content" value="gestionEmploye-content"/>
 	<jsp:param name="title" value="Gestion des employes"/>
 </jsp:include>

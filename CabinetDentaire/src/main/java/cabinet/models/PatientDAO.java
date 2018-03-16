@@ -104,8 +104,8 @@ public class PatientDAO extends CommonDAO {
     public boolean delete(int id) {
         try {
             PreparedStatement statement = connection.conn.prepareStatement(SQLConstant.DELETE_PATIENT);
-            statement.setInt(1, id);
-
+            statement.setInt(1,id);
+            System.out.println(statement.toString());
             statement.executeUpdate();
             statement.close();
             return true;

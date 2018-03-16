@@ -5,4 +5,5 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<h1>Page acceuil ou d'erreur si renvoie vers cette page</h1>
+<h1>Bienvenue sur l'acceuil du site</h1>
+<h2>Page d'erreur si redirection vers cette page</h2>

@@ -6,7 +6,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <script src="${pageContext.request.contextPath}/js/gestionPatientJs.js" charset="utf-8"></script>
-<div class="col-sm-2">
+<div class="col-xs-2">
     <h2>Ajout d'un patient</h2>
     <s:form action="AddPatient" method="post" enctype="multipart/form-data" theme="bootstrap" cssClass="form-vertical">
         <s:textfield name="nom"  placeholder="Nom"/>
@@ -23,7 +23,8 @@
         <s:submit cssClass="btn btn-info center-block" value="Ajouter"  />
     </s:form>
 </div>
-<div class="col-sm-10">
+<div class="col-xs-10">
+    <h2 class="text-center">Liste des patients</h2>
     <table class="table table-bordered table-hover table-condensed" id="patientTable">
         <thead>
             <tr>
@@ -62,8 +63,8 @@
                 <td><s:property value="numAssurance"/></td>
                 <td>
                     <button onclick="fetchRow(this)" class="btn btn btn-info" data-toggle="modal" data-target="#updateModal">Update</button>
+                    <a href="showConsultation" ><button onclick="showConsultation(this)" class="btn btn btn-primary">Dossier</button></a>
                     <button onclick="deletePatient(this)" class="btn btn btn-danger">Delete</button>
-                    <a  href="showConsultation" ><button onclick="showConsultation(this)" class="btn btn btn-info">Visites</button></a>
                 </td>
             </tr>
         </s:iterator>

@@ -7,27 +7,27 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <script src="${pageContext.request.contextPath}/js/gestionEmployeJs.js" charset="utf-8"></script>
-<div class="col-sm-2">
+<div class="col-xs-2">
     <h2>Ajout d'un employe</h2>
     <s:form action="AddEmploye" method="post" enctype="multipart/form-data" theme="bootstrap" cssClass="form-vertical">
-            
-            <s:textfield placeholder="Nom" name="nom" />
-            <s:textfield placeholder="Prenom" name="prenom" />
-            <s:textfield placeholder="Addresse" name="addresse" />
-            <s:textfield type="date" label="DateNaissance" name="dateNaissance"/>
-            <s:textfield placeholder="NumTel" name="numTel" />
-            <s:textfield placeholder="Email"  name="email"/>
-            <s:textfield placeholder="Age"  name="age"/>
-            <s:textfield placeholder="Salaire"  name="salaire"/>
-            <s:textfield type="date" label="DateEmbauche" name="dateEmbauche"/>
-            <s:textfield placeholder="Login"  name="login"/>
-            <s:textfield placeholder="Password"  name="password"/>
-            <s:textfield placeholder="NiveauDroits"  name="niveauDroits"/>
-            <s:radio list="{'Dentiste','Infirmier','Secretaire'}" name="Discriminator" labelposition="inline" label="Emploi"/>  
-            <s:submit cssClass="btn btn-info center-block" value="Ajouter" />
-        </s:form>
+        <s:textfield placeholder="Nom" name="nom" />
+        <s:textfield placeholder="Prenom" name="prenom" />
+        <s:textfield placeholder="Addresse" name="addresse" />
+        <s:textfield type="date" label="DateNaissance" name="dateNaissance"/>
+        <s:textfield placeholder="NumTel" name="numTel" />
+        <s:textfield placeholder="Email"  name="email"/>
+        <s:textfield placeholder="Age"  name="age"/>
+        <s:textfield placeholder="Salaire"  name="salaire"/>
+        <s:textfield type="date" label="DateEmbauche" name="dateEmbauche"/>
+        <s:textfield placeholder="Login"  name="login"/>
+        <s:textfield placeholder="Password"  name="password"/>
+        <s:textfield placeholder="NiveauDroits"  name="niveauDroits"/>
+        <s:radio list="{'Dentiste','Infirmier','Secretaire'}" name="Discriminator" labelposition="inline" label="Emploi"/>  
+        <s:submit cssClass="btn btn-info center-block" value="Ajouter" />
+    </s:form>
 </div>
-<div class="col-sm-10">
+<div class="col-xs-10">
+    <h2 class="text-center">Liste des employés</h2>
     <table class="table table-bordered table-hover table-condensed" id="personnelTable">
         <thead>
             <tr>
@@ -52,22 +52,22 @@
         <s:iterator value="employeList">
             <tr>
                 <td><s:property value="personnelID" /></td>
-                    <td><s:property value="cabinetID" /></td>
-                    <td><s:property value="nom" /></td>
-                    <td><s:property value="prenom" /></td>
-                    <td><s:property value="addresse" /></td>
-                    <td><s:property value="dateNaissance" /></td>
-                    <td><s:property value="numTel" /></td>
-                    <td><s:property value="email" /></td>
-                    <td><s:property value="age" /></td>
-                    <td><s:property value="salaire" /></td>
-                    <td><s:property value="dateEmbauche" /></td>
-                    <td><s:property value="login" /></td>
-                    <td><s:property value="password" /></td>
-                    <td><s:property value="niveauDroits" /></td>
-                    <td><s:property value="discriminator" /></td>
+                <td><s:property value="cabinetID" /></td>
+                <td><s:property value="nom" /></td>
+                <td><s:property value="prenom" /></td>
+                <td><s:property value="addresse" /></td>
+                <td><s:property value="dateNaissance" /></td>
+                <td><s:property value="numTel" /></td>
+                <td><s:property value="email" /></td>
+                <td><s:property value="age" /></td>
+                <td><s:property value="salaire" /></td>
+                <td><s:property value="dateEmbauche" /></td>
+                <td><s:property value="login" /></td>
+                <td><s:property value="password" /></td>
+                <td><s:property value="niveauDroits" /></td>
+                <td><s:property value="discriminator" /></td>
                 <td>
-                   <button onclick="fetchRow(this)" class="btn btn btn-info" data-toggle="modal" data-target="#updateModal">Update</button>
+                    <button onclick="fetchRow(this)" class="btn btn btn-info" data-toggle="modal" data-target="#updateModal">Update</button>
                     <button onclick="deleteEmploye(this)" class="btn btn btn-danger">Delete</button>
                 </td>
             </tr>

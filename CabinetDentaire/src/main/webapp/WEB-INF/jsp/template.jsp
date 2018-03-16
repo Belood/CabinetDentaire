@@ -21,13 +21,13 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/template.css">
     </head>
     <body>
-        <jsp:include page="/jsp/header.jsp"/>
+        <jsp:include page="/WEB-INF/jsp/header.jsp"/>
         <div class="container-fluid" id="mainContent">
-            <jsp:include page="/jsp/${param.content}.jsp"/>   
+            <jsp:include page="/WEB-INF/jsp/${param.content}.jsp"/>   
         </div>
 
 
-        <jsp:include page="/jsp/footer.jsp"/>
+        <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
 
     </body>

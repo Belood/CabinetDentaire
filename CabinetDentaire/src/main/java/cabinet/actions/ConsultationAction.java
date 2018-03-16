@@ -16,8 +16,8 @@ import java.util.ArrayList;
  *
  * @author USER
  */
-public class ConsultationAction extends ActionSupport  {
-    
+public class ConsultationAction extends ActionSupport {
+
     private int patientId;
     private int consultationID;
     private int dossierID;
@@ -25,58 +25,58 @@ public class ConsultationAction extends ActionSupport  {
     private String typeConsultation;
     private LocalDate dateConsultation;
     private String observations;
-    private ArrayList<Consultation> consultList=null;
-    private ConsultationDAO consultDao=new ConsultationDAO();
+    private ArrayList<Consultation> consultList = null;
+    private ConsultationDAO consultDao = new ConsultationDAO();
     private String status;
 
     @Override
-    public String execute(){
-       int res = -1;
-        try{
+    public String execute() {
+        int res = -1;
+        try {
             res = consultDao.retrieveDossier(patientId);
-            
+
             setDossierID(res);
-            
-            Consultation consult=new Consultation(getDossierID(),1, "t", LocalDate.parse("2018-03-21"), "ytr");
-            ConsultationDAO consultDAO= new ConsultationDAO();
+
+            Consultation consult = new Consultation(getDossierID(), 1, "t", LocalDate.parse("2018-03-21"), "ytr");
+            ConsultationDAO consultDAO = new ConsultationDAO();
             consultDAO.create(consult);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return SUCCESS;
     }
-    public String showConsultation(){
+
+    public String showConsultation() {
         int res = -1;
-        try{
-            
+        try {
+
             res = consultDao.retrieveDossier(patientId);
             setDossierID(res);
             ResultSet resultSet = consultDao.findAll(getDossierID());
-            consultList=new ArrayList<Consultation>();
-            if(resultSet!=null){
-            while (resultSet.next()) {
-                Consultation consult = new Consultation();
- 
-                consult.setConsultationNum(resultSet.getInt("ConsultationNum"));
-                consult.setDateConsultation(resultSet.getString("DateConsultation"));
-                consult.setDossierID(resultSet.getInt("DossierID"));
-                consult.setObservations(resultSet.getString("Observations"));
-                consult.setTypeConsultation(resultSet.getString("typeConsultation"));
-                
-                consultList.add(consult);
-            }
-            }
-            else{
+            consultList = new ArrayList<Consultation>();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    Consultation consult = new Consultation();
+
+                    consult.setConsultationNum(resultSet.getInt("ConsultationNum"));
+                    consult.setDateConsultation(resultSet.getString("DateConsultation"));
+                    consult.setDossierID(resultSet.getInt("DossierID"));
+                    consult.setObservations(resultSet.getString("Observations"));
+                    consult.setTypeConsultation(resultSet.getString("typeConsultation"));
+                    consultList.add(consult);
+                    return "success";
+                }
+            } else {
                 return null;
             }
-            
-        }
-        catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
+            return "input";
         }
-        return "success";
+        return "input";
     }
+
     /**
      * @return the consultationID
      */
@@ -216,6 +216,5 @@ public class ConsultationAction extends ActionSupport  {
     public void setPatientId(int patientId) {
         this.patientId = patientId;
     }
-    
-    
+
 }
