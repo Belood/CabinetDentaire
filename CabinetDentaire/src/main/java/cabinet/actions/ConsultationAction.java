@@ -31,17 +31,22 @@ public class ConsultationAction extends ActionSupport {
 
     @Override
     public String execute() {
+        String res = "success";
         if(String.valueOf(getDossierID()).length()==0){
             addFieldError("dossierID", "DossierID is required.");
+            res = "input";
         }
         if(String.valueOf(getConsultationNum()).length()==0){
             addFieldError("consultationNum", "ConsultationNum is required.");
+            res = "input";
         }
         if(getTypeConsultation().length()==0){
             addFieldError("typeConsultation", "TypeConsultation is required.");
+            res = "input";
         }
         if(getObservations().length()==0){
             addFieldError("observations", "Observations is required.");
+            res = "input";
         }
         try {
             LocalDate.parse(getDateConsultation().toString());
@@ -50,6 +55,9 @@ public class ConsultationAction extends ActionSupport {
             e.printStackTrace();
             addFieldError("dateConsultation", "DateConsultation is required.");
             return INPUT;
+        }
+        if (res.equals("input")) {
+            return res;
         }
         consultDao.create(new Consultation(dossierID, consultationNum, typeConsultation, dateConsultation, observations));
         return SUCCESS;
