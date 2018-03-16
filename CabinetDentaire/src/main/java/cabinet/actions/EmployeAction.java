@@ -44,8 +44,11 @@ public class EmployeAction extends ActionSupport implements SessionAware {
 
     public String login() {
         try {
-            if (employeDAO.validate(getLogin(), getPassword())) {
+            Employe emp=employeDAO.validate(getLogin(), getPassword());
+            if (emp!= null) {
                 sessionMap.put("login", getLogin());
+                //System.out.println(emp.getNiveauDroits());
+                sessionMap.put("level",emp.getNiveauDroits());
                 return "success";
             }
         } catch (Exception e) {

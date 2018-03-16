@@ -5,5 +5,4 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<h1>Bienvenue sur l'acceuil du site</h1>
-<h2>Page d'erreur si redirection vers cette page</h2>
+<h1>Bienvenue sur l'application de gestion d'un cabinet dentaire</h1>

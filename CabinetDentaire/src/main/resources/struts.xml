@@ -12,10 +12,14 @@
             <result name="input">login.jsp</result>
             <result name="failure">login.jsp</result>
         </action> 
+        <action name="toLog">
+            <result>login.jsp</result>
+        </action>
     </package>
     <package name="CabinetDentaire" extends="json-default">
         <interceptors>
             <interceptor name="auth" class="cabinet.interceptor.AuthInterceptor"/>
+            <interceptor name="admin" class="cabinet.interceptor.AdminInterceptor"/>
             <interceptor-stack name="authenticatedStack">
                 <interceptor-ref name="auth"/>
                 <interceptor-ref name="defaultStack" />
@@ -23,32 +27,34 @@
         </interceptors>
         <default-interceptor-ref name="authenticatedStack" />
         <global-results>
-            <result name="error-forbidden" type="httpheader">
-                <param name="error">403</param>
-            </result>
+            <result name="error-forbidden">/WEB-INF/jsp/errorPage.jsp</result>
         </global-results>
         
         <!-- Actions pour authentification -->
         <action name="logout" class="cabinet.actions.EmployeAction" method="logout">
-            <result name="success">login.jsp</result>     
+            <result name="success">/WEB-INF/jsp/acceuil.jsp</result>     
         </action> 
         
-        <!-- Actions pour employés -->
+           <!-- Actions pour employés -->
         <action name="GestionEmploye" class="cabinet.actions.EmployeAction" method="tableEmploye">
+            <interceptor-ref name="admin"/>
             <result name="findAll">/WEB-INF/jsp/gestionEmploye.jsp</result>
         </action>
         
         <action name="AddEmploye" class="cabinet.actions.EmployeAction" method="execute">
+             <interceptor-ref name="admin"/>
             <result name="success">/WEB-INF/jsp/gestionEmploye.jsp</result>
             <result name="input">/WEB-INF/jsp/gestionEmploye.jsp</result>
         </action> 
         
         <action name="updateEmploye" class="cabinet.actions.EmployeAction" method="updateEmploye">
+            <interceptor-ref name="admin"/>
             <result name="update" type="json"></result>
             <result name="input">/WEB-INF/jsp/acceuil.jsp</result>
         </action>
         
         <action name="deleteEmploye" class="cabinet.actions.EmployeAction" method="deleteEmploye">
+            <interceptor-ref name="admin"/>
             <result name="delete" type="json"></result>
             <result name="input">/WEB-INF/jsp/acceuil.jsp</result>
         </action>
@@ -110,6 +116,10 @@
             <result name="delete" type="json"></result>
             <result name="input">/WEB-INF/jsp/acceuil.jsp</result>
         </action>
-
     </package>
+
+
+
+        
+     
 </struts>

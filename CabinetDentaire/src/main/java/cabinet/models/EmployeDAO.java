@@ -21,18 +21,26 @@ import java.util.List;
  */
 public class EmployeDAO extends CommonDAO {
 
-    public boolean validate(String login, String password) {
-        boolean status = false;
+    public Employe validate(String login, String password) {
+        Employe emp = new Employe();
+        //boolean status = false;
         try {
             PreparedStatement ps = connection.conn.prepareStatement(SQLConstant.LOGIN_EXIST);
             ps.setString(1, login);
             ps.setString(2, password);
+            //System.out.println(ps.toString());
             ResultSet rs = ps.executeQuery();
-            status = rs.next();
+            if (rs.next()) {
+                emp.setLogin(rs.getString("Login"));
+                emp.setPassword(rs.getString("Password"));
+                emp.setNiveauDroits(rs.getInt("NiveauDroits"));
+            }
+            //status = rs.next();
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-        return status;
+        return emp;
     }
 
     public Employe create(Employe employe) {
@@ -52,10 +60,8 @@ public class EmployeDAO extends CommonDAO {
             statement.setString(11, employe.getPassword());
             statement.setInt(12, employe.getNiveauDroits());
             statement.setString(13, employe.getDiscriminator());
-
             statement.executeUpdate();
             statement.close();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -68,7 +74,6 @@ public class EmployeDAO extends CommonDAO {
             PreparedStatement statement = connection.conn.prepareStatement(SQLConstant.READ_EMPLOYE);
             statement.setInt(1, employe.getPersonnelID());
             ResultSet resultSet = statement.executeQuery();
-
             employe.setNom(resultSet.getString("Nom"));
             employe.setPrenom(resultSet.getString("Prenom"));
             employe.setAddresse(resultSet.getString("Addresse"));
@@ -83,9 +88,7 @@ public class EmployeDAO extends CommonDAO {
             employe.setDateEmbauche(resultSet.getString("DateEmbauche"));
             employe.setDiscriminator(resultSet.getString("discriminator"));
             employe.setPersonnelID(resultSet.getInt("personnelID"));
-
             employe.setCabinetID(resultSet.getInt("CabinetID"));
-
             resultSet.close();
             statement.close();
 
@@ -203,7 +206,6 @@ public class EmployeDAO extends CommonDAO {
                 employe.setDateEmbauche(resultSet.getString("DateEmbauche"));
                 employe.setDiscriminator(resultSet.getString("discriminator"));
                 employe.setPersonnelID(resultSet.getInt("personnelID"));
-
                 employe.setCabinetID(resultSet.getInt("CabinetID"));
                 employes.add(employe);
             }

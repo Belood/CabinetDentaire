@@ -38,7 +38,7 @@
                 <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span>Se deconnecter</a></li>
                 </s:if>
                 <s:else>
-                <li><a href="login"><span class="glyphicon glyphicon-log-in"></span>Se connecter</a></li>
+                <li><a href="toLog"><span class="glyphicon glyphicon-log-in"></span>Se connecter</a></li>
                 </s:else>
             </ul>
         </div>
